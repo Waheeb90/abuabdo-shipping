@@ -1,93 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>أبو عبدو للشحن</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f9f9f9; color:#111; }
-    header { background:#004aad; color:#fff; padding:12px; display:flex; align-items:center; justify-content:space-between; }
-    header img { height:50px; }
-    header .title { font-size:24px; font-weight:bold; }
-    .container { max-width:1000px; margin:0 auto; padding:20px; }
-    .card { background:#fff; padding:20px; border-radius:12px; margin-bottom:20px; box-shadow:0 2px 6px rgba(0,0,0,.1); }
-    label { display:block; margin-top:8px; font-weight:bold; }
-    input,select { width:100%; padding:10px; margin-top:4px; border:1px solid #ccc; border-radius:8px; }
-    button { background:#004aad; color:#fff; padding:10px 16px; border:none; border-radius:8px; cursor:pointer; margin-top:12px; }
-    button:hover { background:#003070; }
-    footer { background:#004aad; color:#fff; text-align:center; padding:20px; margin-top:20px; }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="logo.png" alt="شعار أبو عبدو للشحن">
-    <div class="title">أبو عبدو للشحن</div>
-  </header>
-
-  <div class="container">
-    <div class="card">
-      <h2>الخطوة ١ — بيانات الشحن</h2>
-      <label>مدينة الشحن (السعودية)</label>
-      <select>
-        <option>الرياض</option>
-        <option>جدة</option>
-        <option>الدمام</option>
-        <option>مكة</option>
-      </select>
-
-      <label>الولاية (السودان)</label>
-      <select>
-        <option>ولاية الخرطوم</option>
-        <option>الولاية الشمالية</option>
-        <option>نهر النيل</option>
-        <option>الجزيرة</option>
-      </select>
-
-      <label>مدينة الاستلام</label>
-      <input placeholder="مثال: الخرطوم">
-
-      <label>اسم الدولة</label>
-      <select>
-        <option>السعودية +966</option>
-        <option>السودان +249</option>
-      </select>
-
-      <label>رقم جوال العميل</label>
-      <input placeholder="05xxxxxxxx">
-
-      <label>عنوان العميل</label>
-      <input placeholder="الحي، الشارع، أقرب معلم…">
-
-      <button>التالي</button>
-    </div>
-
-    <div class="card">
-      <h2>الخطوة ٢ — إضافة نوع الشحنة</h2>
-      <label>نوع الشحنة</label>
-      <input placeholder="مثال: كرتون متوسط">
-
-      <label>الوزن (كجم)</label>
-      <input type="number">
-
-      <label>الأبعاد</label>
-      <input placeholder="مثال: 40×30×30">
-
-      <label>نوع الشحن</label>
-      <select>
-        <option>شحن عادي</option>
-        <option>شحن سريع</option>
-      </select>
-
-      <button>إضافة للسلة</button>
-    </div>
-
-    <div class="card">
-      <h2>🧺 السلة</h2>
-      <p>عند إضافة الشحنات ستظهر هنا لإرسالها عبر واتساب.</p>
-      <button>إرسال الطلب عبر واتساب</button>
-    </div>
-  </div>
-
-  <footer>© 2025 أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة</footer>
-</body>
-</html>
