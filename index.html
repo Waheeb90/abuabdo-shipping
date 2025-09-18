@@ -152,7 +152,7 @@
 </main>
 
 <footer>
-  أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة
+  أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة  شعارنا الصدق والامانة
 </footer>
 
 <script>
@@ -248,7 +248,7 @@ checkoutBtn.addEventListener('click', ()=>{
   const cartLines = cart.map((c,i)=>`${i+1}) ${c.type} - ${c.size} - ${c.weight}كجم${c.note? ' - '+c.note:''}`).join('%0A');
   const msg = `طلب شحن جديد (${orderId})%0Aمدينة الشحن: ${city}%0Aولاية الاستلام: ${state}%0Aالنوع: ${speed}%0A%0A*السلة:*%0A${cartLines}%0A%0Aجوال العميل: ${phone}%0Aالعنوان: ${address}%0A(الدفع عند الاستلام)`;
   // ضع رقم الواتساب التجاري الخاص بك هنا بصيغة دولية بدون + : 9665XXXXXXXX
-  const whatsappNumber = "966500000000";
+  const whatsappNumber = "+966542354559";
   const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
   window.location.href = url;
 });
