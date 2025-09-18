@@ -50,7 +50,7 @@
     </div>
     <nav>
       <a href="#/" class="active">الرئيسية</a>
-      <a href="#/offers"> من 🚪 إلى🚪</a>
+      <a href="#/offers"> من🚪إلى🚪</a>
     </nav>
   </div>
 </header>
@@ -246,7 +246,7 @@ checkoutBtn.addEventListener('click', ()=>{
   const cartLines = cart.map((c,i)=>`${i+1}) ${c.type} - ${c.size} - ${c.weight}كجم${c.note? ' - '+c.note:''}`).join('%0A');
   const msg = `طلب شحن جديد (${orderId})%0Aمدينة الشحن: ${city}%0Aولاية الاستلام: ${state}%0Aالنوع: ${speed}%0A%0A*السلة:*%0A${cartLines}%0A%0Aجوال العميل: ${phone}%0Aالعنوان: ${address}%0A(الدفع عند الاستلام)`;
   // ضع رقم الواتساب التجاري الخاص بك هنا بصيغة دولية بدون + : 9665XXXXXXXX
-  const whatsappNumber = "966500000000";
+  const whatsappNumber = "+966 542354559";
   const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
   window.location.href = url;
 });
