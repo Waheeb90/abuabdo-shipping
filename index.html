@@ -118,10 +118,10 @@
           <table>
             <thead><tr><th>نوع الشحنة</th><th>السعر الإرشادي (ر.س)</th></tr></thead>
             <tbody>
-              <tr><td>برميل مواد غذائية</td>
-              <tr><td>كرتون متوسط</td>
-              <tr><td>كرتون كبير</td><td>120</td></tr>
-              <tr><td>ثلاجة متوسطة</td><td>700</td></tr>
+              <tr><td>برميل مواد غذائية</td></tr>
+              <tr><td>كرتون متوسط</td></tr>
+              <tr><td>كرتون كبير</td></tr>
+              <tr><td>ثلاجة متوسطة</td></tr>
             </tbody>
           </table>
         </div>
@@ -130,7 +130,7 @@
     
     <!-- Step 2 -->
     <section id="step2" class="card hidden">
-      <h2>الخطوة ٢ — إضافة أنواع الشحن</h2>
+      <h2>الخطوة ٢ — إضافة نوع الشحنة</h2>
       <div class="products" id="products"></div>
 
       <div class="card" style="margin-top:12px">
@@ -146,7 +146,7 @@
           </div>
           <div>
             <label class="req">الأبعاد</label>
-            <input id="c_dim" placeholder="مثلاً 40×30×30" />
+            <input id="c_dim" placeholder="مثلاً 30×40" />
           </div>
           <div>
             <label class="req">نوع الشحن</label>
@@ -181,17 +181,17 @@
     </section>
   </main>
 
-  <footer>أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة</footer>
+  <footer>أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة شعارنا الصدق والامانة والدقة</footer>
 
 <script>
 (function(){
   // إعدادات
   const WA_NUMBER = "966542354559"; // بدون +
   const CATALOG = [
-    { id:"BRML", name:"برميل مواد غذائية", price:400 },
-    { id:"MEDBOX", name:"كرتون متوسط", price:80 },
-    { id:"BIGBOX", name:"كرتون كبير", price:120 },
-    { id:"FRIDGE_M", name:"ثلاجة متوسطة", price:700 }
+    { id:"BRML", name:"برميل مواد غذائية", 
+    { id:"MEDBOX", name:"كرتون متوسط", 
+    { id:"BIGBOX", name:"كرتون كبير", 
+    { id:"FRIDGE_M", name:"ثلاجة متوسطة", 
   ];
 
   // عناصر DOM
