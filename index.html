@@ -178,8 +178,8 @@ const states = [
   "ولاية الخرطوم","الولاية الشمالية","نهر النيل","البحر الأحمر","كسلا",
   "القضارف","سنار","النيل الأزرق","النيل الأبيض","الجزيرة",
 ];
-const sdState = document.getElementById('sdState');
-sdState.innerHTML = '<option value="">اختر</option>' + states.map(s=>`<option>${s}</option>`).join('');
+const sdstate = document.getElementById('sdstate');
+sdstate.innerHTML = '<option value="">اختر</option>' + states.map(s=>`<option>${s}</option>`).join('');
 
 // التنقل بين الخطوات
 const step1 = document.getElementById('step1');
