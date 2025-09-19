@@ -50,7 +50,7 @@
     </div>
     <nav>
       <a href="#/" class="active">الرئيسية</a>
-      <a href="#/offers">عرض الأسعار</a>
+      <a href="#/offers">من🚪إلى🚪</a>
     </nav>
   </div>
 </header>
@@ -72,6 +72,23 @@
         <label>الولاية (السودان)</label>
         <select id="sdState" required></select>
       </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>اسم المرسل <span class="badge">إجباري</span></label>
+        <input id="senderName" placeholder="مثال: أحمد علي" required>
+      </div>
+      <div>
+        <label>اسم المستلم <span class="badge">إجباري</span></label>
+        <input id="receiverName" placeholder="مثال: محمد حسن" required>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label>رقم المستلم (السودان) <span class="badge">إجباري</span></label>
+        <input id="receiverPhone" placeholder="+249xxxxxxx" required>
+      </div>
+      <div></div>
     </div>
     <div class="row">
       <div>
@@ -152,7 +169,7 @@
 </main>
 
 <footer>
-  أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة
+   "أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة  "شعارنا الصدق والامانة
 </footer>
 
 <script>
@@ -160,8 +177,6 @@
 const states = [
   "ولاية الخرطوم","الولاية الشمالية","نهر النيل","البحر الأحمر","كسلا",
   "القضارف","سنار","النيل الأزرق","النيل الأبيض","الجزيرة",
-  "شمال كردفان","غرب كردفان","جنوب كردفان",
-  "شمال دارفور","وسط دارفور","غرب دارفور","جنوب دارفور","شرق دارفور"
 ];
 const sdState = document.getElementById('sdState');
 sdState.innerHTML = '<option value="">اختر</option>' + states.map(s=>`<option>${s}</option>`).join('');
@@ -238,17 +253,22 @@ addMoreBtn.addEventListener('click', ()=>{
 });
 
 checkoutBtn.addEventListener('click', ()=>{
-  if(cart.length===0){ alert("أضف شحنة واحدة على الأقل."); return; }
+  if(cart.length===0){ 
+    alert("أضف شحنة واحدة على الأقل."); 
+    return; 
+  }
   const city = document.getElementById('saCity').value.trim();
   const state = document.getElementById('sdState').value.trim();
   const phone = document.getElementById('phone').value.trim();
   const address = document.getElementById('address').value.trim();
   const speed = document.getElementById('shipSpeed').value.trim();
+  const senderName = document.getElementById('senderName').value.trim();
+  const receiverName = document.getElementById('receiverName').value.trim();
+  const receiverPhone = document.getElementById('receiverPhone').value.trim();
   const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
   const cartLines = cart.map((c,i)=>`${i+1}) ${c.type} - ${c.size} - ${c.weight}كجم${c.note? ' - '+c.note:''}`).join('%0A');
-  const msg = `طلب شحن جديد (${orderId})%0Aمدينة الشحن: ${city}%0Aولاية الاستلام: ${state}%0Aالنوع: ${speed}%0A%0A*السلة:*%0A${cartLines}%0A%0Aجوال العميل: ${phone}%0Aالعنوان: ${address}%0A(الدفع عند الاستلام)`;
-  // ضع رقم الواتساب التجاري الخاص بك هنا بصيغة دولية بدون + : 9665XXXXXXXX
-  const whatsappNumber = "966500000000";
+  const msg = `طلب شحن جديد (${orderId})%0Aمدينة الشحن: ${city}%0Aولاية الاستلام: ${state}%0Aالنوع: ${speed}%0A%0A*بيانات المرسل:*%0Aالاسم: ${senderName}%0A%0A*بيانات المستلم:*%0Aالاسم: ${receiverName}%0Aالجوال: ${receiverPhone}%0A%0A*السلة:*%0A${cartLines}%0A%0Aجوال العميل: ${phone}%0Aالعنوان: ${address}%0A(الدفع عند الاستلام)`;
+  const whatsappNumber = "966542354559"; // ضع رقم واتساب الخاص بك هنا
   const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
   window.location.href = url;
 });
