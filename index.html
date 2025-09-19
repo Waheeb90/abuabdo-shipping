@@ -254,18 +254,44 @@ addMoreBtn.addEventListener('click', ()=>{
 
 checkoutBtn.addEventListener('click', ()=>{
   if(cart.length===0){ alert("أضف شحنة واحدة على الأقل."); return; }
-  const city = document.getElementById('saCity').value.trim();
-  const state = document.getElementById('sdState').value.trim();
-  const phone = document.getElementById('phone').value.trim();
+
+  const city    = document.getElementById('saCity').value.trim();
+  const state   = document.getElementById('sdState').value.trim();
+  const phone   = document.getElementById('phone').value.trim(); // جوال العميل بالسعودية
   const address = document.getElementById('address').value.trim();
-  const speed = document.getElementById('shipSpeed').value.trim();
-  const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
-  const cartLines = cart.map((c,i)=>`${i+1}) ${c.type} - ${c.size} - ${c.weight}كجم${c.note? ' - '+c.note:''}`).join('%0A');
-  const msg = `طلب شحن جديد (${orderId})%0Aمدينة الشحن: ${city}%0Aولاية الاستلام: ${state}%0Aالنوع: ${speed}%0A%0A*السلة:*%0A${cartLines}%0A%0Aجوال العميل: ${phone}%0Aالعنوان: ${address}%0A(الدفع عند الاستلام)`;
-  // ضع رقم الواتساب التجاري الخاص بك هنا بصيغة دولية بدون + : 9665XXXXXXXX
-  const whatsappNumber = "+966 542354559";
-  const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
+  const speed   = document.getElementById('shipSpeed').value.trim();
+
+  const sName   = document.getElementById('senderName').value.trim();
+  const rName   = document.getElementById('receiverName').value.trim();
+  const rPhone  = document.getElementById('receiverPhone').value.trim();
+
+  const orderId   = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
+  const cartLines = cart.map((c,i)=>`${i+1}) ${c.type} - ${c.size} - ${c.weight}كجم${c.note? ' - '+c.note:''}`).join('\n');
+
+  const text = 
+`طلب شحن جديد (${orderId})
+مدينة الشحن: ${city}
+ولاية الاستلام: ${state}
+النوع: ${speed}
+
+*السلة:*
+${cartLines}
+
+*بيانات المرسل:*
+الاسم: ${sName}
+
+*بيانات المستلم:*
+الاسم: ${rName}
+رقم المستلم (السودان): ${rPhone}
+
+جوال العميل (السعودية): ${phone}
+العنوان: ${address}
+(الدفع عند الاستلام)`;
+
+  const whatsappNumber = "9665XXXXXXXX"; // ضع رقمك هنا
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
   window.location.href = url;
+});
 });
 </script>
 </body>
