@@ -59,95 +59,92 @@
   </header>
 
   <main class="container">
-  <!-- الخطوة ١ -->
-  <section id="step1" class="card">
-    <h2>الخطوة ١ – بيانات الشحن</h2>
+  
+  <!-- ✅ بداية الـ form لتفعيل التحقق -->
+  <form id="shippingForm" novalidate>
+    <!-- الخطوة ١ -->
+    <section id="step1" class="card">
+      <h2 class="title">الخطوة ١ — بيانات الشحن</h2>
+      <p class="muted">من السعودية إلى السودان. بعد الضغط على “التالي” ستنتقل لإضافة نوع الشحنة (لا توجد أسعار في الموقع).</p>
 
-    <div class="form-group">
-      <label for="saCity">مدينة الشحن (السعودية) <span class="req">*</span></label>
-      <select id="saCity" required>
-        <option value="">اختر</option>
-        <option>الرياض</option>
-        <option>جدة</option>
-        <option>مكة</option>
-        <option>المدينة</option>
-        <option>الدمام</option>
-        <option>الخبر</option>
-        <option>القصيم</option>
-        <option>أبها</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="sdState">الولاية (السودان) <span class="req">*</span></label>
-      <select id="sdState" required>
-        <option value="">اختر</option>
-        <option>ولاية الخرطوم</option>
-        <option>الولاية الشمالية</option>
-        <option>نهر النيل</option>
-        <option>البحر الأحمر</option>
-        <option>كسلا</option>
-        <option>القضارف</option>
-        <option>سنار</option>
-        <option>النيل الأزرق</option>
-        <option>النيل الأبيض</option>
-        <option>الجزيرة</option>
-        <option disabled>شمال كردفان — غير متاح</option>
-        <option disabled>جنوب كردفان — غير متاح</option>
-        <option disabled>غرب كردفان — غير متاح</option>
-        <option disabled>شمال دارفور — غير متاح</option>
-        <option disabled>جنوب دارفور — غير متاح</option>
-        <option disabled>غرب دارفور — غير متاح</option>
-        <option disabled>وسط دارفور — غير متاح</option>
-        <option disabled>شرق دارفور — غير متاح</option>
-      </select>
-      <p class="muted">⚠️ ولايات دارفور وكردفان غير متاحة حاليا.</p>
-    </div>
-
-    <div class="form-group">
-      <label for="area">اسم المنطقة <span class="req">*</span></label>
-      <input id="area" placeholder="مثال: بحري — الحلفايا" required />
-    </div>
-
-    <!-- نوع الشحن -->
-    <div class="form-group">
-      <label for="shipSpeed">نوع الشحن <span class="req">*</span></label>
-      <select id="shipSpeed" required>
-        <option>شحن عادي</option>
-        <option>شحن سريع</option>
-      </select>
-    </div>
-
-    <!-- بيانات المرسل أولاً -->
-    <h3>👤 بيانات المرسل</h3>
-    <div class="row">
       <div class="form-group">
-        <label for="senderName">اسم المرسل <span class="req">*</span></label>
-        <input id="senderName" placeholder="مثال: أحمد علي" required />
+        <label for="saCity">مدينة الشحن (السعودية) <span class="req">*</span></label>
+        <select id="saCity" required>
+          <option value="">اختر</option>
+          <option>الرياض</option>
+          <option>جدة</option>
+          <option>مكة</option>
+          <option>المدينة</option>
+          <option>الدمام</option>
+          <option>الخبر</option>
+          <option>القصيم</option>
+          <option>أبها</option>
+        </select>
       </div>
+
       <div class="form-group">
-        <label for="phone">رقم جوال المرسل (السعودية) <span class="req">*</span></label>
-        <input id="phone" placeholder="05xxxxxxxx" required />
+        <label for="sdState">الولاية (السودان) <span class="req">*</span></label>
+        <select id="sdState" required></select>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group"><label for="senderNeighborhood">الحي <span class="req">*</span></label><input id="senderNeighborhood" placeholder="مثال: النسيم" required /></div>
-      <div class="form-group"><label for="senderStreet">الشارع <span class="req">*</span></label><input id="senderStreet" placeholder="مثال: شارع حسان بن ثابت" required /></div>
-    </div>
-    <div class="form-group"><label for="senderLandmark">معلم بارز <span class="req">*</span></label><input id="senderLandmark" placeholder="مثال: جوار مسجد الهدى" required /></div>
 
-    <!-- بيانات المستلم ثانيًا -->
-    <h3>👤 بيانات المستلم</h3>
-    <div class="row">
-      <div class="form-group"><label for="receiverName">اسم المستلم <span class="req">*</span></label><input id="receiverName" required /></div>
-      <div class="form-group"><label for="receiverPhone">رقم المستلم (السودان) <span class="req">*</span></label><input id="receiverPhone" required /></div>
-    </div>
+      <div class="form-group">
+        <label for="regionName">اسم المنطقة (إجباري) <span class="req">*</span></label>
+        <input id="regionName" placeholder="مثال: حي السوق — جوار المستشفى" required />
+      </div>
 
-    <div style="margin-top:12px">
-      <button id="toStep2">التالي</button>
-    </div>
-  </section>
+      <div class="row">
+        <div class="form-group">
+          <label for="senderName">اسم المرسل <span class="req">*</span></label>
+          <input id="senderName" placeholder="مثال: أحمد علي" required />
+        </div>
+        <div class="form-group">
+          <label for="senderPhone">رقم المرسل (السعودية) <span class="req">*</span></label>
+          <input id="senderPhone" placeholder="05xxxxxxxx" inputmode="tel" pattern="^0?5\d{8}$" required />
+        </div>
+      </div>
 
+      <div class="form-group">
+        <label for="senderAddress">عنوان المرسل — الحي، الشارع، معلم بارز <span class="req">*</span></label>
+        <input id="senderAddress" placeholder="مثال: حي النسيم، شارع حسان بن ثابت، بجوار مسجد الهدى" required />
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="receiverName">اسم المستلم <span class="req">*</span></label>
+          <input id="receiverName" placeholder="مثال: محمد حسن" required />
+        </div>
+        <div class="form-group">
+          <label for="receiverPhone">رقم المستلم (السودان) <span class="req">*</span></label>
+          <input id="receiverPhone" placeholder="+249xxxxxxxxx" inputmode="tel" pattern="^\+?249\d{9}$" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="clientPhone">رقم جوال العميل (السعودية) <span class="req">*</span></label>
+        <input id="clientPhone" placeholder="05xxxxxxxx" inputmode="tel" pattern="^0?5\d{8}$" required />
+      </div>
+
+      <div class="form-group">
+        <label for="clientAddress">عنوان العميل</label>
+        <input id="clientAddress" placeholder="الحي، الشارع، أقرب معلم…" />
+      </div>
+
+      <div class="form-group">
+        <label for="shipSpeed">نوع الشحن</label>
+        <select id="shipSpeed">
+          <option>شحن عادي</option>
+          <option>شحن سريع</option>
+        </select>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <!-- ✅ مهم: type="button" -->
+        <button type="button" id="toStep2">التالي</button>
+      </div>
+    </section>
+  </form>
+  <!-- ✅ نهاية الـ form -->
+    
   <!-- الخطوة ٢ -->
   <section id="step2" class="card" style="display:none">
     <h2>الخطوة ٢ – إضافة الشحنات</h2>
