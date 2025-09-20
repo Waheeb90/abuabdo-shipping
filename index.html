@@ -6,58 +6,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root{
-      --brand:#0b5ab8;
+      --brand:#0d85ba;
       --bg:#f7f9fc;
       --card:#ffffff;
       --text:#0a0a0a;
-      --muted:#6b7280;
+      --muted:#6e7280;
       --danger:#b91c1c;
     }
     *{box-sizing:border-box}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Tahoma,Arial;margin:0;background:var(--bg);color:var(--text)}
-    header{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;border-bottom:2px solid #083a7a}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Tahoma,Arial;margin:0;
+      background:var(--bg);color:var(--text);}
     .container{max-width:980px;margin:auto;padding:0 16px}
+    header{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;
+      border-bottom:2px solid #083a7a}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:10px}
     .brand img{height:40px;width:auto}
-    .brand h1{margin:0;font-size:20px;font-weight:800}
+    .nav h1{flex:1;text-align:center;font-size:22px;font-weight:800;margin:0}
     .links{display:flex;align-items:center;gap:12px;list-style:none;margin:0;padding:0}
     .links a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px}
-    .links a:hover{background:#084a9c}
+    .links a:hover{background:#084a96}
     main{padding:20px 0}
-    .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(2,24,54,.06);padding:18px;margin:14px 0}
-    h2{margin:0 0 10px}
+    .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);
+      padding:18px;margin:14px 0}
     .form-group{margin:10px 0}
     label{display:block;font-weight:700;margin-bottom:6px}
-    input,select,button{width:100%;padding:12px 14px;border:1px solid #d8dee9;border-radius:10px;font-size:16px;background:#fff}
-    button{background:var(--brand);color:#fff;border:none;cursor:pointer}
+    input,select,textarea{width:100%;padding:12px 14px;border:1px solid #d8dee9;
+      border-radius:10px;font-size:16px}
+    button{background:var(--brand);color:#fff;border:none;cursor:pointer;padding:12px 20px;
+      border-radius:10px;font-size:16px}
     button.secondary{background:#e5e7eb;color:#111}
-    .req{color:var(--danger)}
     .muted{color:var(--muted);font-size:14px}
     option[disabled]{color:gray}
-    footer{padding:30px 0;color:#374151;text-align:center}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    @media (max-width:640px){.row{grid-template-columns:1fr}}
+    footer{padding:16px;background:#374151;color:#fff;text-align:center}
   </style>
 </head>
 <body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="شعار أبو عبدو للشحن" />
+      </div>
 
-<header>
-  <div class="container nav">
-    <div class="brand">
-      <img src="logo.png" alt="شعار أبو عبدو للشحن" />
+      <!-- العنوان في المنتصف -->
       <h1>أبو عبدو لخدمات الشحن</h1>
+
+      <ul class="links">
+        <li><a href="#">الرئيسية</a></li>
+        <li><a href="#step1">من 🚪 إلى 🚪</a></li>
+        <li><a href="https://wa.me/966542354559" target="_blank" rel="noopener">تواصل واتساب</a></li>
+      </ul>
     </div>
-    <ul class="links">
-      <li><a href="#">الرئيسية</a></li>
-      <li><a href="#step1">من 🚪 إلى 🚪</a></li>
-      <li><a href="https://wa.me/966542354559" target="_blank" rel="noopener">تواصل واتساب</a></li>
-    </ul>
-  </div>
-</header>
+  </header>
 
-<main class="container">
-
+  <main class="container">
   <!-- الخطوة ١ -->
   <section id="step1" class="card">
     <h2>الخطوة ١ – بيانات الشحن</h2>
