@@ -36,6 +36,8 @@
     .muted{color:var(--muted);font-size:14px}
     option[disabled]{color:gray}
     footer{padding:30px 0;color:#374151;text-align:center}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    @media (max-width:640px){.row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -49,7 +51,7 @@
     <ul class="links">
       <li><a href="#">الرئيسية</a></li>
       <li><a href="#step1">من 🚪 إلى 🚪</a></li>
-      <li><a href="https://wa.me/966542354559" target="_blank">تواصل واتساب</a></li>
+      <li><a href="https://wa.me/966542354559" target="_blank" rel="noopener">تواصل واتساب</a></li>
     </ul>
   </div>
 </header>
@@ -103,43 +105,41 @@
 
     <div class="form-group">
       <label for="area">اسم المنطقة <span class="req">*</span></label>
-      <input id="area" required />
+      <input id="area" placeholder="مثال: بحري — الحلفايا" required />
     </div>
 
-    <div class="row">
-      <div class="form-group">
-        <label for="senderName">اسم المرسل <span class="req">*</span></label>
-        <input id="senderName" required />
-      </div>
-      <div class="form-group">
-        <label for="receiverName">اسم المستلم <span class="req">*</span></label>
-        <input id="receiverName" required />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group">
-        <label for="receiverPhone">رقم المستلم (السودان) <span class="req">*</span></label>
-        <input id="receiverPhone" required />
-      </div>
-      <div class="form-group">
-        <label for="phone">رقم جوال العميل (السعودية) <span class="req">*</span></label>
-        <input id="phone" required />
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="senderAddress">عنوان المرسل <span class="req">*</span></label>
-      <input id="senderAddress" required />
-    </div>
-
-    <!-- نوع الشحن (سريع/عادي) -->
+    <!-- نوع الشحن -->
     <div class="form-group">
       <label for="shipSpeed">نوع الشحن <span class="req">*</span></label>
       <select id="shipSpeed" required>
         <option>شحن عادي</option>
         <option>شحن سريع</option>
       </select>
+    </div>
+
+    <!-- بيانات المرسل أولاً -->
+    <h3>👤 بيانات المرسل</h3>
+    <div class="row">
+      <div class="form-group">
+        <label for="senderName">اسم المرسل <span class="req">*</span></label>
+        <input id="senderName" placeholder="مثال: أحمد علي" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">رقم جوال المرسل (السعودية) <span class="req">*</span></label>
+        <input id="phone" placeholder="05xxxxxxxx" required />
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group"><label for="senderNeighborhood">الحي <span class="req">*</span></label><input id="senderNeighborhood" placeholder="مثال: النسيم" required /></div>
+      <div class="form-group"><label for="senderStreet">الشارع <span class="req">*</span></label><input id="senderStreet" placeholder="مثال: شارع حسان بن ثابت" required /></div>
+    </div>
+    <div class="form-group"><label for="senderLandmark">معلم بارز <span class="req">*</span></label><input id="senderLandmark" placeholder="مثال: جوار مسجد الهدى" required /></div>
+
+    <!-- بيانات المستلم ثانيًا -->
+    <h3>👤 بيانات المستلم</h3>
+    <div class="row">
+      <div class="form-group"><label for="receiverName">اسم المستلم <span class="req">*</span></label><input id="receiverName" required /></div>
+      <div class="form-group"><label for="receiverPhone">رقم المستلم (السودان) <span class="req">*</span></label><input id="receiverPhone" required /></div>
     </div>
 
     <div style="margin-top:12px">
@@ -165,16 +165,20 @@
           <option>شنطة سفر صغيرة</option>
           <option>شنطة سفر كبيرة</option>
           <option>حقيبة ملابس</option>
-          <option>مواد غذائية متنوعة</option>
-          <option>مستلزمات منزلية</option>
           <option>ملابس</option>
           <option>أحذية</option>
           <option>أدوات مطبخ</option>
+          <option>مواد غذائية متنوعة</option>
+          <option>تمور/مواد غذائية</option>
           <option>ألعاب أطفال</option>
           <option>كتب/مطبوعات</option>
-          <option>أدوات تجميل</option>
           <option>أدوات مكتبية</option>
-          <option>أجهزة غير كهربائية (أدوات يدوية)</option>
+          <option>مستحضرات تجميل</option>
+          <option>معدات/عدد يدوية</option>
+          <option>قطع غيار خفيفة</option>
+          <option>إطارات</option>
+          <option>جنوط</option>
+          <option>مواد أخرى</option>
           <option>أخرى (طرد/علبة/حقيبة)</option>
         </optgroup>
 
@@ -186,18 +190,21 @@
           <option>فريزر أفقي</option>
           <option>فريزر رأسي</option>
           <option>غسالة ملابس</option>
+          <option>نشاف/مجفف ملابس</option>
           <option>غسالة صحون</option>
           <option>مكيف شباك</option>
           <option>مكيف سبليت</option>
           <option>ميكروويف</option>
           <option>فرن كهربائي</option>
           <option>دفاية/سخان ماء</option>
+          <option>سخان مركّب</option>
           <option>مكنسة كهربائية</option>
           <option>خلاط/محضّر طعام</option>
           <option>عصارة</option>
           <option>محمصة خبز</option>
           <option>قدر ضغط كهربائي</option>
           <option>ماكينة قهوة</option>
+          <option>ماكينة ثلج/مبرد ماء</option>
           <option>تلفزيون 32 بوصة</option>
           <option>تلفزيون 43 بوصة</option>
           <option>تلفزيون 50 بوصة</option>
@@ -211,7 +218,9 @@
           <option>راوتر/مودم</option>
           <option>سماعات كبيرة</option>
           <option>جهاز صوت منزلي</option>
+          <option>مشغل أقراص/رسيفر</option>
           <option>مكنة خياطة (كهربائية)</option>
+          <option>سكوتر كهربائي</option>
           <option>أجهزة كهربائية أخرى</option>
         </optgroup>
 
@@ -239,17 +248,12 @@
         <optgroup label="أصناف أخرى">
           <option>دراجة/سيكل</option>
           <option>سكوتر بدون محرك</option>
-          <option>سكوتر كهربائي</option>
-          <option>قطع غيار سيارات</option>
-          <option>إطارات</option>
-          <option>جنوط</option>
-          <option>معدات/عدد</option>
-          <option>أدوات رياضية</option>
+          <option>معدات رياضية</option>
           <option>آلات موسيقية غير كهربائية</option>
           <option>مواد أخرى</option>
         </optgroup>
       </select>
-      <small class="muted">* الوزن إلزامي لكل الشحنات — المقاس/البوصة يظهر ويصبح إلزاميًا فقط للأجهزة الكهربائية.</small>
+      <small class="muted">* الوزن والحجم إلزاميان لكل الشحنات — والمقاس/البوصة يظهر ويصبح إلزاميًا فقط للأجهزة الكهربائية.</small>
     </div>
 
     <div class="row">
@@ -257,43 +261,55 @@
         <label for="weight">الوزن (كجم) <span class="req">*</span></label>
         <input type="number" id="weight" min="1" placeholder="مثال: 25" required />
       </div>
-      <!-- المقاس يظهر فقط للأجهزة -->
-      <div class="form-group" id="sizeGroup" style="display:none">
-        <label for="size">المقاس/البوصة <span class="req">*</span></label>
-        <input id="size" placeholder="مثال: 60×40×40 سم أو 55 بوصة" />
+      <div class="form-group">
+        <label for="sizeSelect">الحجم <span class="req">*</span></label>
+        <select id="sizeSelect" required>
+          <option value="">اختر</option>
+          <option>صغير</option>
+          <option>وسط</option>
+          <option>كبير</option>
+        </select>
       </div>
     </div>
 
-    <div style="margin-top:8px;display:flex;gap:10px">
-      <button id="addToCart">إضافة للسلة</button>
+    <!-- المقاس/البوصة للأجهزة الكهربائية فقط -->
+    <div class="form-group" id="dimGroup" style="display:none">
+      <label for="dimensions">المقاس/البوصة <span class="req">*</span></label>
+      <input id="dimensions" placeholder="مثال: 55 بوصة أو 60x40x40 سم" />
     </div>
 
-    <h3 style="margin-top:16px">السلة</h3>
+    <div style="margin-top:8px"><button id="addToCart">إضافة للسلة</button></div>
+
+    <h3>السلة</h3>
     <ul id="cartList"></ul>
 
     <div style="margin-top:12px;display:flex;gap:10px">
       <button class="secondary" id="back1">رجوع</button>
       <button id="checkout">إرسال عبر واتساب</button>
     </div>
-    <p class="muted">⚠️ لا توجد أسعار في الموقع — سيتم تسعير الطلب يدويًا عبر واتساب.</p>
+    <p class="muted">⚠️ لا توجد أسعار في الموقع — سيتم تسعير الطلب يدويًا عبر واتساب (الدفع عند الاستلام).</p>
   </section>
 
 </main>
 
-<footer>
-  أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة — شعارنا الصدق والأمانة
-</footer>
+<footer>أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة</footer>
 
 <script>
-  /* الأجهزة الكهربائية (لإجبار المقاس) */
+  /* الأجهزة الكهربائية لتفعيل خانة المقاس/البوصة */
   const ELECTRONICS = new Set([
-    "ثلاجة صغيرة","ثلاجة متوسطة","ثلاجة كبيرة","فريزر أفقي","فريزر رأسي",
-    "غسالة ملابس","غسالة صحون","مكيف شباك","مكيف سبليت","ميكروويف","فرن كهربائي",
-    "دفاية/سخان ماء","مكنسة كهربائية","خلاط/محضّر طعام","عصارة","محمصة خبز",
-    "قدر ضغط كهربائي","ماكينة قهوة",
+    "ثلاجة صغيرة","ثلاجة متوسطة","ثلاجة كبيرة",
+    "فريزر أفقي","فريزر رأسي",
+    "غسالة ملابس","نشاف/مجفف ملابس","غسالة صحون",
+    "مكيف شباك","مكيف سبليت",
+    "ميكروويف","فرن كهربائي",
+    "دفاية/سخان ماء","سخان مركّب",
+    "مكنسة كهربائية",
+    "خلاط/محضّر طعام","عصارة","محمصة خبز","قدر ضغط كهربائي","ماكينة قهوة","ماكينة ثلج/مبرد ماء",
     "تلفزيون 32 بوصة","تلفزيون 43 بوصة","تلفزيون 50 بوصة","تلفزيون 55 بوصة","تلفزيون 65 بوصة","تلفزيون 75 بوصة",
-    "شاشة كمبيوتر","كمبيوتر مكتبي","لابتوب","طابعة","راوتر/مودم","سماعات كبيرة","جهاز صوت منزلي","مكنة خياطة (كهربائية)","أجهزة كهربائية أخرى",
-    "سكوتر كهربائي"
+    "شاشة كمبيوتر","كمبيوتر مكتبي","لابتوب","طابعة","راوتر/مودم",
+    "سماعات كبيرة","جهاز صوت منزلي","مشغل أقراص/رسيفر",
+    "مكنة خياطة (كهربائية)","سكوتر كهربائي",
+    "أجهزة كهربائية أخرى"
   ]);
 
   /* عناصر DOM */
@@ -301,104 +317,99 @@
   const step2=document.getElementById("step2");
   const toStep2Btn=document.getElementById("toStep2");
   const back1Btn=document.getElementById("back1");
-  const checkoutBtn=document.getElementById("checkout");
   const addToCartBtn=document.getElementById("addToCart");
+  const checkoutBtn=document.getElementById("checkout");
   const cartList=document.getElementById("cartList");
 
   const itemSel=document.getElementById("item");
   const weightIn=document.getElementById("weight");
-  const sizeIn=document.getElementById("size");
-  const sizeGroup=document.getElementById("sizeGroup");
+  const sizeSel=document.getElementById("sizeSelect");
+  const dimGroup=document.getElementById("dimGroup");
+  const dimIn=document.getElementById("dimensions");
 
-  /* إظهار/إخفاء المقاس حسب الفئة */
-  function toggleSizeField(){
-    const isElec = ELECTRONICS.has(itemSel.value);
-    if(isElec){
-      sizeGroup.style.display='block';
-      sizeIn.setAttribute('required','required');
+  /* إظهار/إخفاء المقاس للأجهزة الكهربائية */
+  function toggleDim(){
+    if(ELECTRONICS.has(itemSel.value)){
+      dimGroup.style.display='block';
+      dimIn.setAttribute('required','required');
     }else{
-      sizeGroup.style.display='none';
-      sizeIn.removeAttribute('required');
-      sizeIn.value='';
+      dimGroup.style.display='none';
+      dimIn.removeAttribute('required');
+      dimIn.value='';
     }
   }
-  itemSel.addEventListener('change', toggleSizeField);
-  toggleSizeField();
+  itemSel.addEventListener('change', toggleDim);
+  toggleDim();
 
   /* تنقل بين الخطوات */
   toStep2Btn.addEventListener('click', ()=>{ step1.style.display='none'; step2.style.display='block'; });
   back1Btn.addEventListener('click', ()=>{ step2.style.display='none'; step1.style.display='block'; });
 
-  /* السلة ككائنات لضمان ظهور التفاصيل في رسالة واتساب */
+  /* السلة */
   let cart=[];
   function renderCart(){
-    if(cart.length===0){ cartList.innerHTML='<li class="muted">السلة فارغة.</li>'; return; }
-    cartList.innerHTML = cart.map((it,i)=>`<li>${i+1}) ${it.item} — الوزن: ${it.weight} كجم${it.size? ' — المقاس/البوصة: '+it.size:''}</li>`).join('');
+    cartList.innerHTML = cart.length
+      ? cart.map((c,i)=>`<li>${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}</li>`).join('')
+      : '<li class="muted">السلة فارغة.</li>';
   }
 
   addToCartBtn.addEventListener('click', ()=>{
     const item=(itemSel.value||'').trim();
     const weight=(weightIn.value||'').trim();
-    const isElec=ELECTRONICS.has(item);
-    const size=isElec ? (sizeIn.value||'').trim() : '';
+    const size=(sizeSel.value||'').trim();
+    const dim = ELECTRONICS.has(item) ? (dimIn.value||'').trim() : '';
 
-    if(!item){ alert('الرجاء اختيار نوع الشحنة.'); return; }
-    if(!weight){ alert('الرجاء إدخال الوزن (كجم).'); return; }
-    if(isElec && !size){ alert('الرجاء إدخال المقاس/البوصة للجهاز الكهربائي.'); return; }
-
-    cart.push({item,weight,size});
+    if(!item || !weight || !size || (ELECTRONICS.has(item) && !dim)){
+      alert('يرجى إدخال نوع الشحنة، الوزن، الحجم، والمقاس/البوصة للأجهزة.');
+      return;
+    }
+    cart.push({item,weight,size,dim});
     renderCart();
-
-    itemSel.value=''; weightIn.value=''; sizeIn.value='';
-    toggleSizeField();
+    itemSel.value=''; weightIn.value=''; sizeSel.value=''; dimIn.value='';
+    toggleDim();
   });
 
-  /* إرسال عبر واتساب */
+  /* إرسال الواتساب بكل التفاصيل */
   checkoutBtn.addEventListener('click', ()=>{
-    const city=document.getElementById('saCity').value.trim();
-    const state=document.getElementById('sdState').value.trim();
-    const area=document.getElementById('area').value.trim();
-    const senderName=document.getElementById('senderName').value.trim();
-    const receiverName=document.getElementById('receiverName').value.trim();
-    const receiverPhone=document.getElementById('receiverPhone').value.trim();
-    const phone=document.getElementById('phone').value.trim();
-    const senderAddress=document.getElementById('senderAddress').value.trim();
-    const shipSpeed=document.getElementById('shipSpeed').value.trim(); // <-- نوع الشحن
+    if(cart.length===0){ alert('أضف شحنة واحدة على الأقل'); return; }
 
-    if(!city || !state || !area || !senderName || !receiverName || !receiverPhone || !phone || !senderAddress){
-      alert('يرجى تعبئة جميع الحقول المطلوبة في الخطوة ١.');
+    // من الخطوة 1
+    const saCity=(document.getElementById('saCity').value||'').trim();
+    const sdState=(document.getElementById('sdState').value||'').trim();
+    const area=(document.getElementById('area').value||'').trim();
+    const shipSpeed=(document.getElementById('shipSpeed').value||'').trim();
+
+    const senderName=(document.getElementById('senderName').value||'').trim();
+    const phone=(document.getElementById('phone').value||'').trim();
+    const senderNeighborhood=(document.getElementById('senderNeighborhood').value||'').trim();
+    const senderStreet=(document.getElementById('senderStreet').value||'').trim();
+    const senderLandmark=(document.getElementById('senderLandmark').value||'').trim();
+
+    const receiverName=(document.getElementById('receiverName').value||'').trim();
+    const receiverPhone=(document.getElementById('receiverPhone').value||'').trim();
+
+    if(!saCity || !sdState || !area || !shipSpeed ||
+       !senderName || !phone || !senderNeighborhood || !senderStreet || !senderLandmark ||
+       !receiverName || !receiverPhone){
+      alert('يرجى تعبئة جميع حقول الخطوة ١ قبل الإرسال.');
       step2.style.display='none'; step1.style.display='block';
       return;
     }
-    if(cart.length===0){ alert('يرجى إضافة شحنة واحدة على الأقل إلى السلة.'); return; }
 
-    const orderId = 'ABD-' + Math.random().toString(36).slice(2,6).toUpperCase();
-    const cartLines = cart.map((it,i)=>{
-      const sz = it.size ? ` — المقاس/البوصة: ${it.size}` : '';
-      return `${i+1}) ${it.item} — الوزن: ${it.weight} كجم${sz}`;
-    }).join('\n');
+    const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
+    const cartLines = cart.map((c,i)=>`${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}`).join('%0A');
 
-    const msg = `📦 طلب شحن جديد (${orderId})
-مدينة الشحن: ${city}
-ولاية الاستلام: ${state}
-منطقة الاستلام: ${area}
-نوع الشحن: ${shipSpeed}
+    const msg =
+      `طلب شحن جديد (${orderId})%0A` +
+      `%0A🚚 *بيانات الشحن*%0Aمدينة الشحن: ${saCity}%0Aولاية الاستلام: ${sdState}%0Aالمنطقة: ${area}%0Aنوع الشحن: ${shipSpeed}%0A` +
+      `%0A👤 *بيانات المرسل*%0Aالاسم: ${senderName}%0Aالجوال: ${phone}%0Aالحي: ${senderNeighborhood}%0Aالشارع: ${senderStreet}%0Aمعلم بارز: ${senderLandmark}%0A` +
+      `%0A👤 *بيانات المستلم*%0Aالاسم: ${receiverName}%0Aالجوال: ${receiverPhone}%0A` +
+      `%0A📦 *الشحنات*:%0A${cartLines}%0A` +
+      `%0A💰 الدفع عند الاستلام`;
 
-👤 بيانات المرسل:
-الاسم: ${senderName}
-العنوان: ${senderAddress}
-رقم الجوال (السعودية): ${phone}
-
-👤 بيانات المستلم:
-الاسم: ${receiverName}
-رقم الجوال (السودان): ${receiverPhone}
-
-🛒 الشحنات:
-${cartLines}
-(الدفع عند الاستلام)`;
-
-    const whatsappNumber = "966542354559"; // رقم واتسابك بدون +
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
+    const whatsappNumber = "966542354559"; // رقمك بصيغة دولية بدون +
+    const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
+    window.location.href = url;
   });
 </script>
 </body>
