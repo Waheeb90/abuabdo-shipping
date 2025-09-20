@@ -59,6 +59,9 @@
   </header>
 
   <main class="container">
+
+  <!-- ✅ بداية الـ FORM (إضافة فقط) -->
+  <form id="step1Form" novalidate>
   <!-- الخطوة ١ -->
   <section id="step1" class="card">
     <h2>الخطوة ١ – بيانات الشحن</h2>
@@ -144,9 +147,12 @@
     </div>
 
     <div style="margin-top:12px">
-      <button id="toStep2">التالي</button>
+      <!-- ✅ النوع Button فقط -->
+      <button id="toStep2" type="button">التالي</button>
     </div>
   </section>
+  </form>
+  <!-- ✅ نهاية الـ FORM -->
 
   <!-- الخطوة ٢ -->
   <section id="step2" class="card" style="display:none">
@@ -279,14 +285,14 @@
       <input id="dimensions" placeholder="مثال: 55 بوصة أو 60x40x40 سم" />
     </div>
 
-    <div style="margin-top:8px"><button id="addToCart">إضافة للسلة</button></div>
+    <div style="margin-top:8px"><button id="addToCart" type="button">إضافة للسلة</button></div>
 
     <h3>السلة</h3>
     <ul id="cartList"></ul>
 
     <div style="margin-top:12px;display:flex;gap:10px">
-      <button class="secondary" id="back1">رجوع</button>
-      <button id="checkout">إرسال عبر واتساب</button>
+      <button class="secondary" id="back1" type="button">رجوع</button>
+      <button id="checkout" type="button">إرسال عبر واتساب</button>
     </div>
     <p class="muted">⚠️ لا توجد أسعار في الموقع — سيتم تسعير الطلب يدويًا عبر واتساب (الدفع عند الاستلام).</p>
   </section>
@@ -342,8 +348,18 @@
   itemSel.addEventListener('change', toggleDim);
   toggleDim();
 
-  /* تنقل بين الخطوات */
-  toStep2Btn.addEventListener('click', ()=>{ step1.style.display='none'; step2.style.display='block'; });
+  /* ✅ التحقق قبل الانتقال للخطوة ٢ (إضافة فقط) */
+  toStep2Btn.addEventListener('click', ()=>{
+    const f = document.getElementById('step1Form');
+    if(!f.checkValidity()){
+      f.reportValidity();
+      return;
+    }
+    step1.style.display='none';
+    step2.style.display='block';
+  });
+
+  /* رجوع للخطوة ١ */
   back1Btn.addEventListener('click', ()=>{ step2.style.display='none'; step1.style.display='block'; });
 
   /* السلة */
