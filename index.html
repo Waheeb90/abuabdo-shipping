@@ -1,368 +1,255 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>أبو عبدو للشحن</title>
+  <meta charset="UTF-8">
+  <title>أبو عبدو لخدمات الشحن</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    :root{
-      --brand:#0b5ab8;
-      --bg:#f7f9fc;
-      --card:#ffffff;
-      --text:#0a0a0a;
-      --muted:#6b7280;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Tahoma,Arial;background:var(--bg);color:var(--text)}
-    header{position:sticky;top:0;z-index:10;background:var(--brand);color:#fff;border-bottom:2px solid #083a7a}
-    .container{max-width:980px;margin:auto;padding:0 16px}
-    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:10px 0}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:42px;width:auto}
-    .brand h1{margin:0;font-size:22px;font-weight:800}
-    nav a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px}
-    nav a.active,nav a:hover{background:#084a9c}
-    main{padding:20px 0}
-    .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(2,24,54,.06);padding:18px;margin:14px 0}
-    .title{font-size:22px;font-weight:800;margin:0 0 10px}
-    label{font-weight:700;margin:10px 0 6px;display:block}
-    select,input,button{width:100%;padding:12px 14px;border:1px solid #d8dee9;border-radius:10px;font-size:16px;background:#fff}
-    textarea{width:100%;padding:12px 14px;border:1px solid #d8dee9;border-radius:10px;font-size:16px;background:#fff}
-    button{background:var(--brand);color:#fff;border:none;cursor:pointer}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Tahoma,Arial;margin:0;background:#f7f9fc;color:#0a0a0a}
+    .container{max-width:980px;margin:auto;padding:16px}
+    .card{background:#fff;border-radius:14px;box-shadow:0 6px 18px rgba(2,24,54,.06);padding:18px;margin:14px 0}
+    h2{margin-top:0}
+    .form-group{margin:10px 0}
+    label{display:block;font-weight:700;margin-bottom:6px}
+    input,select,button{width:100%;padding:12px 14px;border:1px solid #d8dee9;border-radius:10px;font-size:16px;background:#fff}
+    button{background:#0b5ab8;color:#fff;border:none;cursor:pointer}
     button.secondary{background:#e5e7eb;color:#111}
-    button:disabled{opacity:.5;cursor:not-allowed}
     .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .muted{color:var(--muted);font-size:14px}
-    .steps{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 0}
-    .step{background:#e5eefc;color:#084a9c;padding:6px 10px;border-radius:999px;font-size:13px}
-    footer{padding:30px 0;color:#374151;text-align:center}
-    .cart-item{display:flex;align-items:center;justify-content:space-between;padding:10px;border:1px solid #e5e7eb;border-radius:10px;margin:6px 0}
-    .badge{background:#eef2ff;color:#3730a3;padding:2px 8px;border-radius:999px;font-size:12px}
-    @media (max-width:640px){ .row{grid-template-columns:1fr} .brand h1{font-size:18px} }
+    @media (max-width:640px){.row{grid-template-columns:1fr}}
+    ul{padding-inline-start:18px}
   </style>
 </head>
 <body>
-
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <!-- ضع ملف شعارك باسم logo.png في نفس المجلد -->
-        <img src="logo.png" alt="شعار أبو عبدو لخدمات الشحن" title="شعار أبو عبدو للشحن" />
-        <h1>أبو عبدو لخدمات الشحن</h1>
-      </div>
-      <nav>
-        <a href="#/" class="active">الرئيسية</a>
-        <a href="#/offers">من 🚪 إلى 🚪</a>
-      </nav>
-    </div>
-  </header>
-
   <main class="container">
-    <!-- خطوة 1 -->
+
+    <!-- الخطوة 1 -->
     <section id="step1" class="card">
-      <h2 class="title">الخطوة ١ — بيانات الشحن</h2>
-      <p class="muted">من السعودية إلى السودان. بعد الضغط على “التالي” ستنتقل لإضافة نوع الشحنة (لا توجد أسعار في الموقع).</p>
+      <h2>الخطوة ١ – بيانات الشحن</h2>
 
-      <div class="row">
-        <div>
-          <label>مدينة الشحن (السعودية)</label>
-          <select id="saCity" required>
-            <option value="">اختر</option>
-            <option>الرياض</option>
-            <option>جدة</option>
-            <option>مكة</option>
-            <option>المدينة</option>
-            <option>الدمام</option>
-            <option>الخبر</option>
-            <option>القصيم</option>
-            <option>أبها</option>
-          </select>
-        </div>
-        <div>
-          <label>الولاية (السودان)</label>
-          <select id="sdState" required></select>
-        </div>
+      <!-- مدينة الشحن -->
+      <div class="form-group">
+        <label for="saCity">مدينة الشحن (السعودية)</label>
+        <select id="saCity" required>
+          <option value="">اختر</option>
+          <option>الرياض</option>
+          <option>جدة</option>
+          <option>مكة</option>
+          <option>المدينة</option>
+          <option>الدمام</option>
+          <option>الخبر</option>
+          <option>القصيم</option>
+          <option>أبها</option>
+        </select>
       </div>
 
-      <div class="row">
-        <div>
-          <label>اسم المرسل <span class="badge">إجباري</span></label>
-          <input id="senderName" placeholder="مثال: أحمد علي" />
-        </div>
-        <div>
-          <label>اسم المستلم <span class="badge">إجباري</span></label>
-          <input id="receiverName" placeholder="مثال: محمد حسن" />
-        </div>
+      <!-- ولاية الاستلام -->
+      <div class="form-group">
+        <label for="sdState">الولاية (السودان)</label>
+        <select id="sdState" required></select>
       </div>
 
+      <!-- المنطقة الجديدة -->
+      <div class="form-group">
+        <label for="area">اسم المنطقة (إجباري)</label>
+        <input type="text" id="area" placeholder="مثال: حي السوق – جوار المستشفى" required>
+      </div>
+
+      <!-- المرسل/المستلم -->
       <div class="row">
-        <div>
-          <label>رقم المستلم (السودان) <span class="badge">إجباري</span></label>
-          <input id="receiverPhone" placeholder="249xxxxxxxxx+"
-                 inputmode="numeric" />
+        <div class="form-group">
+          <label for="senderName">اسم المرسل</label>
+          <input type="text" id="senderName" placeholder="مثال: أحمد علي" required>
         </div>
-        <div>
-          <label>رقم جوال العميل (السعودية) <span class="badge">إجباري</span></label>
-          <input id="phone" placeholder="05xxxxxxxx" inputmode="numeric" />
+        <div class="form-group">
+          <label for="receiverName">اسم المستلم</label>
+          <input type="text" id="receiverName" placeholder="مثال: محمد حسن" required>
         </div>
       </div>
 
       <div class="row">
-        <div>
-          <label>عنوان العميل</label>
-          <input id="address" placeholder="الحي، الشارع، أقرب معلم…" />
+        <div class="form-group">
+          <label for="receiverPhone">رقم المستلم (السودان)</label>
+          <input type="text" id="receiverPhone" placeholder="مثال: 249xxxxxxxx+" required>
         </div>
-        <div>
-          <label>نوع الشحن</label>
-          <select id="shipSpeed">
-            <option>شحن عادي</option>
-            <option>شحن سريع</option>
-          </select>
+        <div class="form-group">
+          <label for="phone">رقم جوال العميل (السعودية)</label>
+          <input type="text" id="phone" placeholder="05xxxxxxxx" required>
         </div>
       </div>
 
-      <div class="steps"><span class="step">الدفع عند الاستلام فقط</span></div>
-      <div style="margin-top:12px;display:flex;gap:10px">
-        <button id="toStep2">التالي</button>
+      <!-- عنوان المرسل -->
+      <div class="form-group">
+        <label for="senderAddress">عنوان المرسل (اسم المنطقة + الشارع + معلم بارز)</label>
+        <input type="text" id="senderAddress" placeholder="مثال: النسيم – شارع حسان – جوار مسجد الهدى" required>
       </div>
+
+      <button id="toStep2">التالي</button>
     </section>
 
-    <!-- خطوة 2 -->
+    <!-- الخطوة 2 -->
     <section id="step2" class="card" style="display:none">
-      <h2 class="title">الخطوة ٢ — إضافة نوع الشحنة</h2>
+      <h2>الخطوة ٢ – السلة</h2>
+
+      <div class="form-group">
+        <label for="item">نوع الشحنة</label>
+        <select id="item">
+          <option value="">اختر</option>
+          <option value="كرتون">كرتون</option>
+          <option value="شنطة">شنطة</option>
+          <option value="أجهزة كهربائية">أجهزة كهربائية</option>
+        </select>
+      </div>
+
+      <!-- يظهر فقط عند اختيار "أجهزة كهربائية" -->
+      <div id="dimsGroup" style="display:none">
+        <div class="form-group">
+          <label for="weight">الوزن (كجم) <span style="color:#b91c1c">*</span></label>
+          <input type="number" id="weight" placeholder="مثال: 25">
+        </div>
+        <div class="form-group">
+          <label for="size">الحجم/المقاس <span style="color:#b91c1c">*</span></label>
+          <input type="text" id="size" placeholder="مثال: 60×40×40 سم أو 55 بوصة">
+        </div>
+      </div>
+
+      <button id="addToCart">إضافة للسلة</button>
+
+      <ul id="cartList"></ul>
 
       <div class="row">
-        <div>
-          <label>التصنيف</label>
-          <select id="category">
-            <option value="">اختر التصنيف</option>
-            <option value="عام">شحن عام</option>
-            <option value="أجهزة كهربائية">أجهزة كهربائية</option>
-          </select>
-        </div>
-        <div>
-          <label>نوع الشحنة</label>
-          <select id="itemType">
-            <option value="">اختر نوع الشحنة</option>
-            <option>برميل مواد غذائية</option>
-            <option>كرتون متوسط</option>
-            <option>كرتون كبير</option>
-            <option>ثلاجة متوسطة</option>
-            <option>فريزر متوسط</option>
-            <option>غسالة</option>
-            <option>دولاب/أثاث</option>
-            <option>أخرى</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- حقول الأجهزة الكهربائية (تظهر فقط عند اختيار التصنيف أجهزة كهربائية) -->
-      <div id="applianceFields" style="display:none">
-        <div class="row">
-          <div>
-            <label>نوع الجهاز الكهربائي</label>
-            <select id="applianceType">
-              <option value="">اختر الجهاز</option>
-              <option>ثلاجة</option>
-              <option>فريزر</option>
-              <option>غسالة</option>
-              <option>مكيف</option>
-              <option>تلفزيون</option>
-              <option>فرن كهربائي</option>
-              <option>أخرى</option>
-            </select>
-          </div>
-          <div>
-            <label>المقاس / الحجم</label>
-            <input id="applianceSize" placeholder="مثال: 14 قدم أو 55 بوصة" />
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div>
-          <label>الحجم</label>
-          <select id="size">
-            <option value="">اختر الحجم</option>
-            <option>صغير</option>
-            <option>متوسط</option>
-            <option>كبير</option>
-          </select>
-        </div>
-        <div>
-          <label>الوزن التقريبي (كجم)</label>
-          <input id="weight" type="number" min="1" placeholder="مثال: 25" />
-        </div>
-      </div>
-
-      <div>
-        <label>ملاحظات (اختياري)</label>
-        <input id="note" placeholder="تفاصيل إضافية / وصف الشحنة" />
-      </div>
-
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button class="secondary" id="back1">السابق</button>
-        <button id="addToCart">إضافة للسلة</button>
+        <button class="secondary" id="back1">رجوع</button>
+        <button id="checkout">إرسال الطلب</button>
       </div>
     </section>
 
-    <!-- السلة -->
-    <section id="cart" class="card" style="display:none">
-      <h2 class="title">السلة</h2>
-      <div id="cartList"></div>
-      <div style="display:flex;gap:10px;margin-top:12px">
-        <button class="secondary" id="addMore">إضافة شحنة أخرى</button>
-        <button id="checkout">إرسال الطلب عبر واتساب</button>
-      </div>
-      <p class="muted">⚠️ لا توجد أسعار في الموقع — سيتم تسعير الطلب يدويًا عبر واتساب.</p>
-    </section>
   </main>
 
-  <footer>
-    أبو عبدو للشحن — اتصل نصل أينما كنت داخل المملكة — شعارنا الصدق والأمانة
+  <footer class="container">
+    <p>© أبو عبدو للشحن</p>
   </footer>
 
   <script>
-    /* ولايات السودان كاملة */
+    // ولايات السودان
     const states = [
-      "ولاية الخرطوم","الولاية الشمالية","نهر النيل","البحر الأحمر","كسلا",
-      "القضارف","سنار","النيل الأزرق","النيل الأبيض","الجزيرة",
+      "الخرطوم","الولاية الشمالية","نهر النيل","كسلا","البحر الأحمر",
+      "النيل الأزرق","القضارف","سنار","الجزيرة","النيل الأبيض",
     ];
     const sdState = document.getElementById('sdState');
-    sdState.innerHTML = '<option value=\"\">اختر</option>' + states.map(s => `<option>${s}</option>`).join('');
+    sdState.innerHTML = '<option value="">اختر</option>' + states.map(s => `<option>${s}</option>`).join('');
 
-    /* عناصر الواجهة */
+    // عناصر عامة
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
-    const cartSec = document.getElementById('cart');
     const toStep2Btn = document.getElementById('toStep2');
     const back1Btn = document.getElementById('back1');
-    const addToCartBtn = document.getElementById('addToCart');
-    const addMoreBtn = document.getElementById('addMore');
     const checkoutBtn = document.getElementById('checkout');
+    const addToCartBtn = document.getElementById('addToCart');
     const cartList = document.getElementById('cartList');
 
-    const category = document.getElementById('category');
-    const applianceFields = document.getElementById('applianceFields');
+    // عناصر الشحنة
+    const itemSel   = document.getElementById('item');
+    const dimsGroup = document.getElementById('dimsGroup');
+    const weightIn  = document.getElementById('weight');
+    const sizeIn    = document.getElementById('size');
 
-    /* إظهار/إخفاء حقول الأجهزة */
-    category.addEventListener('change', ()=>{
-      applianceFields.style.display = (category.value === 'أجهزة كهربائية') ? 'block' : 'none';
+    // إظهار/إخفاء الوزن/الحجم حسب نوع الشحنة
+    function toggleDimsByItem(){
+      const isAppliance = (itemSel.value === "أجهزة كهربائية");
+      dimsGroup.style.display = isAppliance ? 'block' : 'none';
+      weightIn.required = isAppliance;
+      sizeIn.required   = isAppliance;
+    }
+    itemSel.addEventListener('change', toggleDimsByItem);
+    toggleDimsByItem();
+
+    // تنقل
+    toStep2Btn.addEventListener('click', ()=>{
+      step1.style.display = 'none';
+      step2.style.display = 'block';
+    });
+    back1Btn.addEventListener('click', ()=>{
+      step2.style.display = 'none';
+      step1.style.display = 'block';
     });
 
-    /* تحقق من الخطوة الأولى */
-    function validateStep1(){
-      const city = document.getElementById('saCity').value.trim();
-      const state = document.getElementById('sdState').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const sender = document.getElementById('senderName').value.trim();
-      const receiver = document.getElementById('receiverName').value.trim();
-      const receiverPhone = document.getElementById('receiverPhone').value.trim();
-
-      if(!city || !state || !sender || !receiver || !receiverPhone || !/^0?5\d{8}$/.test(phone)){
-        alert("يرجى تعبئة جميع الحقول الإلزامية بشكل صحيح.\nرقم العميل بصيغة 05xxxxxxxx.");
-        return false;
-      }
-      return true;
+    // السلة
+    let cart = [];
+    function renderCart(){
+      cartList.innerHTML = cart.map((c,i)=> `<li>${i+1}) ${c}</li>`).join('');
     }
 
-    toStep2Btn.addEventListener('click', ()=>{
-      if(!validateStep1()) return;
-      step1.style.display='none';
-      step2.style.display='block';
-      cartSec.style.display='none';
-    });
-
-    back1Btn.addEventListener('click', ()=>{
-      step1.style.display='block';
-      step2.style.display='none';
-      cartSec.style.display='none';
-    });
-
-    /* السلة */
-    const cart = [];
     addToCartBtn.addEventListener('click', ()=>{
-      const type = document.getElementById('itemType').value.trim();
-      const size = document.getElementById('size').value.trim();
-      const weight = document.getElementById('weight').value.trim();
-      const note = document.getElementById('note').value.trim();
-      const categoryVal = category.value;
+      const item   = itemSel.value.trim();
+      const weight = weightIn.value.trim();
+      const size   = sizeIn.value.trim();
 
-      let appliance = "";
-      if(categoryVal === "أجهزة كهربائية"){
-        const appType = document.getElementById('applianceType').value.trim();
-        const appSize = document.getElementById('applianceSize').value.trim();
-        if(!appType){ alert("اختر نوع الجهاز."); return; }
-        appliance = `${appType}${appSize ? " — " + appSize : ""}`;
-      }else{
-        if(!type){ alert("اختر نوع الشحنة."); return; }
-      }
-      if(!size || !weight){ alert("الرجاء تحديد الحجم والوزن."); return; }
-
-      cart.push({type,size,weight,note,appliance,category:categoryVal});
-      renderCart();
-      step2.style.display='none';
-      cartSec.style.display='block';
-    });
-
-    function renderCart(){
-      if(cart.length===0){
-        cartList.innerHTML = '<p class="muted">السلة فارغة.</p>';
+      if(!item){
+        alert("الرجاء اختيار نوع الشحنة.");
         return;
       }
-      cartList.innerHTML = cart.map((it,idx)=>`
-        <div class="cart-item">
-          <div>
-            <div>
-              <strong>${it.category==="أجهزة كهربائية" ? it.appliance : it.type}</strong>
-              ${it.size ? ` — <span class="badge">${it.size}</span>` : ""}
-            </div>
-            <div class="muted">وزن تقريبي: ${it.weight} كجم ${it.note? '— ملاحظة: '+it.note:''}</div>
-          </div>
-          <button class="secondary" onclick="removeItem(${idx})">حذف</button>
-        </div>
-      `).join('');
-    }
-    window.removeItem = function(i){ cart.splice(i,1); renderCart(); }
 
-    addMoreBtn.addEventListener('click', ()=>{
-      step2.style.display='block';
-      cartSec.style.display='none';
+      const isAppliance = (item === "أجهزة كهربائية");
+      if(isAppliance){
+        if(!weight || !size){
+          alert("للأجهزة الكهربائية: الوزن والحجم/المقاس حقول إلزامية.");
+          return;
+        }
+      }
+
+      let line = item;
+      if(isAppliance){
+        line += ` – الوزن: ${weight} كجم – الحجم/المقاس: ${size}`;
+      } else {
+        if(weight) line += ` – الوزن: ${weight} كجم`;
+        if(size)   line += ` – الحجم/المقاس: ${size}`;
+      }
+
+      cart.push(line);
+      renderCart();
     });
 
+    // إرسال عبر واتساب
     checkoutBtn.addEventListener('click', ()=>{
-      if(cart.length===0){ alert("أضف شحنة واحدة على الأقل."); return; }
+      const city           = document.getElementById('saCity').value;
+      const state          = document.getElementById('sdState').value;
+      const area           = document.getElementById('area').value;
+      const senderName     = document.getElementById('senderName').value;
+      const receiverName   = document.getElementById('receiverName').value;
+      const receiverPhone  = document.getElementById('receiverPhone').value;
+      const phone          = document.getElementById('phone').value;
+      const senderAddress  = document.getElementById('senderAddress').value;
 
-      const city = document.getElementById('saCity').value.trim();
-      const state = document.getElementById('sdState').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const address = document.getElementById('address').value.trim();
-      const speed = document.getElementById('shipSpeed').value.trim();
-      const sender = document.getElementById('senderName').value.trim();
-      const receiver = document.getElementById('receiverName').value.trim();
-      const receiverPhone = document.getElementById('receiverPhone').value.trim();
+      if(!city || !state || !area || !senderName || !receiverName || !receiverPhone || !phone || !senderAddress){
+        alert("يرجى تعبئة جميع الحقول المطلوبة في الخطوة ١.");
+        step1.scrollIntoView({behavior:'smooth'});
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        return;
+      }
 
-      const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
-      const cartLines = cart.map((c,i)=>
-        `${i+1}) ${c.category==="أجهزة كهربائية" ? c.appliance : c.type} — ${c.size} — ${c.weight}كجم${c.note? ' — '+c.note:''}`
-      ).join('%0A');
+      const orderId = 'ABD-' + Math.random().toString(36).slice(2,6).toUpperCase();
+      const cartLines = cart.map((c,i)=> `${i+1}) ${c}`).join('\n');
 
-      const msg =
-        `طلب شحن جديد (${orderId})%0A` +
-        `مدينة الشحن: ${city}%0A` +
-        `ولاية الاستلام: ${state}%0A` +
-        `النوع: ${speed}%0A%0A` +
-        `*السلة:*%0A${cartLines}%0A%0A` +
-        `*المرسل:* ${sender}%0A` +
-        `*المستلم:* ${receiver}%0A` +
-        `*رقم المستلم (السودان):* ${receiverPhone}%0A%0A` +
-        `جوال العميل: ${phone}%0A` +
-        `العنوان: ${address}%0A` +
-        `(الدفع عند الاستلام)`;
+      const msg = `📦 طلب شحن جديد (${orderId})
+مدينة الشحن: ${city}
+ولاية الاستلام: ${state}
+منطقة الاستلام: ${area}
 
-      /* ضع رقم واتسابك بصيغة دولية بدون + إن رغبت (مثال: 9665XXXXXXXX) */
-      const whatsappNumber = "+966542354559";
-      const url = `https://wa.me/${whatsappNumber}?text=${msg}`;
+👤 بيانات المرسل:
+الاسم: ${senderName}
+العنوان: ${senderAddress}
+رقم الجوال: ${phone}
+
+👤 بيانات المستلم:
+الاسم: ${receiverName}
+رقم الجوال: ${receiverPhone}
+
+🛒 السلة:
+${cartLines}
+(الدفع عند الاستلام)`;
+
+      const whatsappNumber = "966542354559"; // ضع رقمك هنا (بدون +)
+      const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
       window.location.href = url;
     });
   </script>
