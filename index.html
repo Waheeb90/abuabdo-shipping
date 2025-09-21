@@ -20,11 +20,51 @@
     header{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;
       border-bottom:2px solid #083a7a}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
-    .brand img{height:40px;width:auto}
-    .nav h1{flex:1;text-align:center;font-size:22px;font-weight:800;margin:0}
+
+    /* اللوجو */
+    .brand img{
+      height:70px;width:auto;
+      display:block;
+      background:#fff;
+      padding:8px 14px;
+      border-radius:14px;
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+    }
+
+    /* العنوان في الوسط */
+    .nav h1{
+      flex:1;
+      text-align:center;
+      font-size:34px;
+      font-weight:900;
+      margin:0;
+      color:#fff; /* أبيض */
+      text-shadow:1px 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* الروابط */
     .links{display:flex;align-items:center;gap:12px;list-style:none;margin:0;padding:0}
     .links a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px}
     .links a:hover{background:#084a96}
+
+    /* زر واتساب */
+    .links .wa-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:40px;
+      width:40px;
+      background:#25D366;
+      border-radius:999px;
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .links .wa-btn:hover{
+      transform:scale(1.08);
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .links .wa-btn img{height:22px;width:22px;display:block}
+
     main{padding:20px 0}
     .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);
       padding:18px;margin:14px 0}
@@ -47,13 +87,20 @@
         <img src="logo.png" alt="شعار أبو عبدو للشحن" />
       </div>
 
-      <!-- العنوان في المنتصف -->
       <h1>أبو عبدو لخدمات الشحن</h1>
 
       <ul class="links">
         <li><a href="#">الرئيسية</a></li>
         <li><a href="#step1">من 🚪 إلى 🚪</a></li>
-        <li><a href="https://wa.me/966542354559" target="_blank" rel="noopener">تواصل واتساب</a></li>
+        <li style="text-align:center">
+          <a class="wa-btn"
+             href="https://wa.me/966542354559"
+             target="_blank" rel="noopener"
+             aria-label="تواصل عبر واتساب">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+          </a>
+          <div style="color:#fff;font-size:13px;margin-top:4px;">للتواصل واتساب</div>
+        </li>
       </ul>
     </div>
   </header>
