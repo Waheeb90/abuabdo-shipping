@@ -33,12 +33,13 @@
 
     /* العنوان في الوسط */
     .nav h1{
-      flex:1;text-align:center;font-size:34px;font-weight:900;margin:0;
-      background: linear-gradient(90deg, #0b5ab8, #4fc3f7, #ffffff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing:1px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+      flex:1;
+      text-align:center;
+      font-size:34px;
+      font-weight:900;
+      margin:0;
+      color:#fff; /* أبيض */
+      text-shadow:1px 1px 4px rgba(0,0,0,0.5);
     }
 
     /* الروابط */
@@ -91,24 +92,39 @@
       <ul class="links">
         <li><a href="#">الرئيسية</a></li>
         <li><a href="#step1">من 🚪 إلى 🚪</a></li>
-        <li>
+        <li style="text-align:center">
           <a class="wa-btn"
              href="https://wa.me/966542354559"
              target="_blank" rel="noopener"
              aria-label="تواصل عبر واتساب">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
           </a>
+          <div style="color:#fff;font-size:13px;margin-top:4px;">للتواصل واتساب</div>
         </li>
       </ul>
     </div>
   </header>
+
   <main class="container">
-    
-  <!-- ✅ بداية الـ FORM (إضافة فقط) -->
-  <form id="step1Form" novalidate>
-  <!-- الخطوة ١ -->
-  <section id="step1" class="card">
-    <h2>الخطوة ١ – بيانات الشحن</h2>
+    <!-- الخطوة ١ -->
+    <section id="step1" class="card">
+      <h2>الخطوة ١ – بيانات الشحن</h2>
+      <!-- محتوى الخطوة الأولى -->
+      <div style="margin-top:12px">
+        <button id="toStep2">التالي</button>
+      </div>
+    </section>
+
+    <!-- الخطوة ٢ -->
+    <section id="step2" class="card" style="display:none">
+      <h2>الخطوة ٢ – إضافة الشحنات</h2>
+      <!-- محتوى الخطوة الثانية -->
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button class="secondary" id="back1">رجوع</button>
+        <button id="checkout">إرسال عبر واتساب</button>
+      </div>
+    </section>
+  </main>
 
     <div class="form-group">
       <label for="saCity">مدينة الشحن (السعودية) <span class="req">*</span></label>
