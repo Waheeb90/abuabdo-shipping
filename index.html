@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -53,8 +54,8 @@
     option[disabled]{color:gray}
     footer{padding:16px;background:#374151;color:#fff;text-align:center}
 
-    /* زر واتساب بتأثير متحرك مستمر */
-    #checkout{
+    /* أزرار متحركة */
+    .animated-btn {
       background: linear-gradient(90deg, #0b5ab8, #4fc3f7, #0b5ab8);
       background-size: 200% 200%;
       animation: pulse 3s linear infinite, wiggle 2s ease-in-out infinite;
@@ -89,7 +90,29 @@
   </header>
 
   <main class="container">
+    <!-- الخطوة ١ -->
+    <section id="step1" class="card">
+      <h2>الخطوة ١ – بيانات الشحن</h2>
+      <!-- محتوى الخطوة الأولى -->
+      <div style="margin-top:12px">
+        <button id="toStep2" class="animated-btn">التالي</button>
+      </div>
+    </section>
 
+    <!-- الخطوة ٢ -->
+    <section id="step2" class="card" style="display:none">
+      <h2>الخطوة ٢ – إضافة الشحنات</h2>
+      <!-- محتوى الخطوة الثانية -->
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button class="secondary animated-btn" id="back1">رجوع</button>
+        <button id="checkout" class="animated-btn">إرسال عبر واتساب</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>أبو عبدو للشحن — من بيتك لبيت أهلك ... شحن مضمون مع أبو عبدو</footer>
+</body>
+</html>
   <!-- ✅ بداية الـ FORM (إضافة فقط) -->
   <form id="step1Form" novalidate>
   <!-- الخطوة ١ -->
