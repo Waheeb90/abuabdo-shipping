@@ -340,9 +340,8 @@ input.error, select.error, textarea.error{
   <!-- جديد: قسم تتبع الشحنة -->
   <section id="tracking" class="card">
     <h2>🔎 تتبّع الشحنة</h2>
-    <div class="form-group">
-      <label for="trackId">أدخل رقم التتبّع:</label>
-      <input id="trackId" placeholder="مثال: ABD-001" />
+    <div class="form-group" style="margin-top:6px">
+      <input id="trackId" placeholder="مثال: ABD-001" autofocus />
     </div>
     <button id="trackBtn">تتبّع الآن</button>
     <p id="trackResult" class="muted" style="margin-top:10px"></p>
@@ -558,9 +557,10 @@ input.error, select.error, textarea.error{
     const trackResult = document.getElementById('trackResult');
 
     async function fetchRows(){
-      const tq = encodeURIComponent('select A,B,C');
+      const tq = encodeURIComponent('select A,B,C'); // A=رقم التتبّع, B=الحالة, C=التاريخ
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(SHEET_NAME)}&tq=${tq}`;
-      const res = await fetch(url);
+      const res = await fetch(url, { mode: 'cors' });
+      if(!res.ok) throw new Error('HTTP ' + res.status);
       const text = await res.text();
       const jsonText = (text.match(/\{[\s\S]*\}/) || ['{}'])[0];
       const data = JSON.parse(jsonText);
@@ -578,7 +578,7 @@ input.error, select.error, textarea.error{
         trackResult.textContent = '⚠️ أدخل رقم التتبّع أولاً';
         return;
       }
-      trackResult.textContent = '⏳ جاري البحث...';
+      trackResult.textContent = '⏳ جارٍ البحث...';
       try{
         const rows = await fetchRows();
         const hit = rows.find(r => cellVal(r.c[0]) === id);
@@ -590,7 +590,8 @@ input.error, select.error, textarea.error{
           trackResult.textContent = '❌ لم يتم العثور على رقم التتبّع.';
         }
       }catch(e){
-        trackResult.textContent = '⚠️ تعذر الاتصال بقاعدة البيانات.';
+        console.error('Tracking fetch error:', e);
+        trackResult.textContent = '⚠️ تعذّر الاتصال بقاعدة البيانات. تأكّد من جعل Google Sheet على Anyone with the link (Viewer) واسم الورقة Sheet1.';
       }
     }
 
