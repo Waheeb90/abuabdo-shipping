@@ -78,6 +78,13 @@
     .muted{color:var(--muted);font-size:14px}
     option[disabled]{color:gray}
     footer{padding:16px;background:#374151;color:#fff;text-align:center}
+
+    /* إبراز الحقول الناقصة بالأحمر */
+    input.error, select.error, textarea.error{
+      border-color: var(--danger) !important;
+      box-shadow: 0 0 0 2px rgba(185,28,28,.12);
+      outline: none;
+    }
   </style>
 </head>
 <body>
@@ -375,6 +382,18 @@
   const dimGroup=document.getElementById("dimGroup");
   const dimIn=document.getElementById("dimensions");
 
+  /* أدوات تمييز/إزالة الأحمر للحقول */
+  function markError(el, hasError){
+    if(!el) return;
+    if(hasError){ el.classList.add('error'); }
+    else{ el.classList.remove('error'); }
+  }
+  function clearOnInput(el){
+    if(!el) return;
+    const ev = (el.tagName === 'SELECT') ? 'change' : 'input';
+    el.addEventListener(ev, ()=> markError(el, false));
+  }
+
   /* إظهار/إخفاء المقاس للأجهزة الكهربائية */
   function toggleDim(){
     if(ELECTRONICS.has(itemSel.value)){
@@ -384,14 +403,68 @@
       dimGroup.style.display='none';
       dimIn.removeAttribute('required');
       dimIn.value='';
+      markError(dimIn,false);
     }
   }
   itemSel.addEventListener('change', toggleDim);
   toggleDim();
 
-  /* تنقل بين الخطوات */
-  toStep2Btn.addEventListener('click', ()=>{ step1.style.display='none'; step2.style.display='block'; });
-  back1Btn.addEventListener('click', ()=>{ step2.style.display='none'; step1.style.display='block'; });
+  /* تجهيز مستمعات إزالة الأحمر */
+  [
+    'saCity','sdState','area','shipSpeed',
+    'senderName','phone','senderNeighborhood','senderStreet','senderLandmark',
+    'receiverName','receiverPhone',
+    'item','weight','sizeSelect','dimensions'
+  ].forEach(id => clearOnInput(document.getElementById(id)));
+
+  /* تحقق خطوة 1 مع تلوين الناقص */
+  function validateStep1WithHighlight(){
+    const saCity=document.getElementById('saCity');
+    const sdState=document.getElementById('sdState');
+    const area=document.getElementById('area');
+    const shipSpeed=document.getElementById('shipSpeed');
+    const senderName=document.getElementById('senderName');
+    const phone=document.getElementById('phone');
+    const senderNeighborhood=document.getElementById('senderNeighborhood');
+    const senderStreet=document.getElementById('senderStreet');
+    const senderLandmark=document.getElementById('senderLandmark');
+    const receiverName=document.getElementById('receiverName');
+    const receiverPhone=document.getElementById('receiverPhone');
+
+    let ok = true;
+
+    [[saCity, !!saCity.value.trim()],
+     [sdState, !!sdState.value.trim()],
+     [area, !!area.value.trim()],
+     [shipSpeed, !!shipSpeed.value.trim()],
+     [senderName, !!senderName.value.trim()],
+     [phone, /^0?5\d{8}$/.test((phone.value||'').trim())],
+     [senderNeighborhood, !!senderNeighborhood.value.trim()],
+     [senderStreet, !!senderStreet.value.trim()],
+     [senderLandmark, !!senderLandmark.value.trim()],
+     [receiverName, !!receiverName.value.trim()],
+     [receiverPhone, !!receiverPhone.value.trim()]
+    ].forEach(([el, valid])=>{
+      if(!valid){ ok=false; markError(el,true); } else { markError(el,false); }
+    });
+
+    return ok;
+  }
+
+  /* زر التالي */
+  toStep2Btn.addEventListener('click', ()=>{
+    if(!validateStep1WithHighlight()){
+      alert("يرجى تعبئة الحقول الإجبارية المظللة باللون الأحمر.");
+      return;
+    }
+    step1.style.display='none';
+    step2.style.display='block';
+  });
+
+  back1Btn.addEventListener('click', ()=>{
+    step2.style.display='none';
+    step1.style.display='block';
+  });
 
   /* السلة */
   let cart=[];
@@ -401,27 +474,49 @@
       : '<li class="muted">السلة فارغة.</li>';
   }
 
+  /* إضافة للسلة مع إبراز الناقص */
   addToCartBtn.addEventListener('click', ()=>{
     const item=(itemSel.value||'').trim();
     const weight=(weightIn.value||'').trim();
     const size=(sizeSel.value||'').trim();
-    const dim = ELECTRONICS.has(item) ? (dimIn.value||'').trim() : '';
+    const isElec = ELECTRONICS.has(itemSel.value);
+    const dim = isElec ? (dimIn.value||'').trim() : '';
 
-    if(!item || !weight || !size || (ELECTRONICS.has(item) && !dim)){
-      alert('يرجى إدخال نوع الشحنة، الوزن، الحجم، والمقاس/البوصة للأجهزة.');
+    let ok = true;
+    [[itemSel, !!item],[weightIn, !!weight],[sizeSel, !!size]].forEach(([el,valid])=>{
+      if(!valid){ ok=false; markError(el,true); } else { markError(el,false); }
+    });
+    if(isElec && !dim){
+      ok=false; markError(dimIn,true);
+    } else {
+      markError(dimIn,false);
+    }
+
+    if(!ok){
+      alert("يرجى إدخال نوع الشحنة، الوزن، الحجم، والمقاس/البوصة للأجهزة (المظللة بالأحمر).");
       return;
     }
+
     cart.push({item,weight,size,dim});
     renderCart();
     itemSel.value=''; weightIn.value=''; sizeSel.value=''; dimIn.value='';
     toggleDim();
   });
 
-  /* إرسال الواتساب بكل التفاصيل */
+  /* إرسال الواتساب بكل التفاصيل مع إبراز الناقص */
   checkoutBtn.addEventListener('click', ()=>{
-    if(cart.length===0){ alert('أضف شحنة واحدة على الأقل'); return; }
+    if(cart.length===0){
+      alert('أضف شحنة واحدة على الأقل');
+      return;
+    }
 
-    // من الخطوة 1
+    const ok = validateStep1WithHighlight();
+    if(!ok){
+      alert('يرجى تعبئة جميع حقول الخطوة ١ (المظللة بالأحمر) قبل الإرسال.');
+      step2.style.display='none'; step1.style.display='block';
+      return;
+    }
+
     const saCity=(document.getElementById('saCity').value||'').trim();
     const sdState=(document.getElementById('sdState').value||'').trim();
     const area=(document.getElementById('area').value||'').trim();
@@ -435,14 +530,6 @@
 
     const receiverName=(document.getElementById('receiverName').value||'').trim();
     const receiverPhone=(document.getElementById('receiverPhone').value||'').trim();
-
-    if(!saCity || !sdState || !area || !shipSpeed ||
-       !senderName || !phone || !senderNeighborhood || !senderStreet || !senderLandmark ||
-       !receiverName || !receiverPhone){
-      alert('يرجى تعبئة جميع حقول الخطوة ١ قبل الإرسال.');
-      step2.style.display='none'; step1.style.display='block';
-      return;
-    }
 
     const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
     const cartLines = cart.map((c,i)=>`${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}`).join('%0A');
