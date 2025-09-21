@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -21,25 +20,50 @@
     header{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;
       border-bottom:2px solid #083a7a}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0}
+
+    /* اللوجو */
     .brand img{
-      height:64px;width:auto;
+      height:70px;width:auto;
       display:block;
-      background:rgba(255,255,255,0.8);
-      padding:6px 12px;
-      border-radius:12px;
+      background:#fff;
+      padding:8px 14px;
+      border-radius:14px;
       box-shadow:0 2px 6px rgba(0,0,0,.2);
     }
+
+    /* العنوان في الوسط */
     .nav h1{
-      flex:1;text-align:center;font-size:36px;font-weight:900;margin:0;
+      flex:1;text-align:center;font-size:34px;font-weight:900;margin:0;
       background: linear-gradient(90deg, #0b5ab8, #4fc3f7, #ffffff);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       letter-spacing:1px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
+
+    /* الروابط */
     .links{display:flex;align-items:center;gap:12px;list-style:none;margin:0;padding:0}
     .links a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px}
     .links a:hover{background:#084a96}
+
+    /* زر واتساب */
+    .links .wa-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      height:40px;
+      width:40px;
+      background:#25D366;
+      border-radius:999px;
+      box-shadow:0 2px 6px rgba(0,0,0,.2);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .links .wa-btn:hover{
+      transform:scale(1.08);
+      box-shadow:0 4px 10px rgba(0,0,0,.25);
+    }
+    .links .wa-btn img{height:22px;width:22px;display:block}
+
     main{padding:20px 0}
     .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);
       padding:18px;margin:14px 0}
@@ -53,25 +77,6 @@
     .muted{color:var(--muted);font-size:14px}
     option[disabled]{color:gray}
     footer{padding:16px;background:#374151;color:#fff;text-align:center}
-
-    /* أزرار متحركة */
-    .animated-btn {
-      background: linear-gradient(90deg, #0b5ab8, #4fc3f7, #0b5ab8);
-      background-size: 200% 200%;
-      animation: pulse 3s linear infinite, wiggle 2s ease-in-out infinite;
-      transition: transform 0.2s ease;
-    }
-    @keyframes pulse {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
-    }
-    @keyframes wiggle {
-      0%, 100% { transform: rotate(0deg) scale(1); }
-      25% { transform: rotate(-2deg) scale(1.05); }
-      50% { transform: rotate(2deg) scale(1.05); }
-      75% { transform: rotate(-2deg) scale(1.05); }
-    }
   </style>
 </head>
 <body>
@@ -80,39 +85,25 @@
       <div class="brand">
         <img src="logo.png" alt="شعار أبو عبدو للشحن" />
       </div>
+
       <h1>أبو عبدو لخدمات الشحن</h1>
+
       <ul class="links">
         <li><a href="#">الرئيسية</a></li>
         <li><a href="#step1">من 🚪 إلى 🚪</a></li>
-        <li><a href="https://wa.me/966542354559" target="_blank" rel="noopener">تواصل واتساب</a></li>
+        <li>
+          <a class="wa-btn"
+             href="https://wa.me/966542354559"
+             target="_blank" rel="noopener"
+             aria-label="تواصل عبر واتساب">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
+          </a>
+        </li>
       </ul>
     </div>
   </header>
-
   <main class="container">
-    <!-- الخطوة ١ -->
-    <section id="step1" class="card">
-      <h2>الخطوة ١ – بيانات الشحن</h2>
-      <!-- محتوى الخطوة الأولى -->
-      <div style="margin-top:12px">
-        <button id="toStep2" class="animated-btn">التالي</button>
-      </div>
-    </section>
-
-    <!-- الخطوة ٢ -->
-    <section id="step2" class="card" style="display:none">
-      <h2>الخطوة ٢ – إضافة الشحنات</h2>
-      <!-- محتوى الخطوة الثانية -->
-      <div style="margin-top:12px;display:flex;gap:10px">
-        <button class="secondary animated-btn" id="back1">رجوع</button>
-        <button id="checkout" class="animated-btn">إرسال عبر واتساب</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>أبو عبدو للشحن — من بيتك لبيت أهلك ... شحن مضمون مع أبو عبدو</footer>
-</body>
-</html>
+    
   <!-- ✅ بداية الـ FORM (إضافة فقط) -->
   <form id="step1Form" novalidate>
   <!-- الخطوة ١ -->
