@@ -635,6 +635,35 @@
   })();
 </script>
 
+<!-- مبدّل عرض الأقسام: يجعل التتبّع كأنه صفحة منفصلة -->
+<script>
+  (function () {
+    const s1 = document.getElementById('step1');
+    const s2 = document.getElementById('step2');
+    const trForm = document.getElementById('trackForm');
+
+    function route() {
+      const h = location.hash || '';
+      // نعتبر أي هاش يحتوي "track" هو صفحة التتبّع (#trackForm / #track / #tracking)
+      const isTracking = h === '#trackForm' || h === '#track' || h === '#tracking' || h.includes('track');
+
+      if (isTracking) {
+        if (s1) s1.style.display = 'none';
+        if (s2) s2.style.display = 'none';
+        if (trForm) trForm.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else {
+        if (s1) s1.style.display = 'block';
+        if (s2) s2.style.display = 'none';
+        if (trForm) trForm.style.display = 'block'; // يبقى نموذج التتبّع في الهيدر ظاهرًا
+      }
+    }
+
+    window.addEventListener('hashchange', route);
+    route(); // تنفيذ عند التحميل
+  })();
+</script>
+
 </body>
 </html>
 ```0
