@@ -418,7 +418,7 @@
   const dimGroup=document.getElementById("dimGroup");
   const dimIn=document.getElementById("dimensions");
 
-  /* أدوات تمييز/إزالة الأحمر للحقول */
+  /* أدوات تمييز/إزالة الأحمر */
   function markError(el, hasError){
     if(!el) return;
     if(hasError){ el.classList.add('error'); }
@@ -540,7 +540,7 @@
   });
 
   /* إرسال الواتساب بكل التفاصيل مع إبراز الناقص */
-  checkoutBtn.addEventListener('click', ()=>{
+  checkoutBtn.addEventListener('click', async ()=>{
     if(cart.length===0){
       alert('أضف شحنة واحدة على الأقل');
       return;
@@ -567,7 +567,9 @@
     const receiverName=(document.getElementById('receiverName').value||'').trim();
     const receiverPhone=(document.getElementById('receiverPhone').value||'').trim();
 
-    const orderId = 'ABD-' + Math.random().toString(36).slice(2,8).toUpperCase();
+    /* 👇 رقم تتبع متسلسل من Google Sheets */
+    const orderId = await getNextOrderId();
+
     const cartLines = cart.map((c,i)=>`${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}`).join('%0A');
 
     const msg =
@@ -644,7 +646,6 @@
 
     function route() {
       const h = location.hash || '';
-      // نعتبر أي هاش يحتوي "track" هو صفحة التتبّع (#trackForm / #track / #tracking)
       const isTracking = h === '#trackForm' || h === '#track' || h === '#tracking' || h.includes('track');
 
       if (isTracking) {
@@ -655,13 +656,49 @@
       } else {
         if (s1) s1.style.display = 'block';
         if (s2) s2.style.display = 'none';
-        if (trForm) trForm.style.display = 'block'; // يبقى نموذج التتبّع في الهيدر ظاهرًا
+        if (trForm) trForm.style.display = 'block';
       }
     }
 
     window.addEventListener('hashchange', route);
-    route(); // تنفيذ عند التحميل
+    route();
   })();
+</script>
+
+<!-- رقم تتبع متسلسل: قراءة آخر رقم من Google Sheets ثم +1 -->
+<script>
+  const ORDER_SHEET_ID   = '1pNsciARaC0dWVA_bYsxoiMkFfts3u5gpNcRVae-lWqQ';
+  const ORDER_SHEET_NAME = 'Sheet1';
+
+  async function fetchTrackingRows(){
+    const tq  = encodeURIComponent('select A');
+    const url = `https://docs.google.com/spreadsheets/d/${ORDER_SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(ORDER_SHEET_NAME)}&tq=${tq}`;
+    const res = await fetch(url);
+    const txt = await res.text();
+    const jsonText = (txt.match(/\{[\s\S]*\}/) || ['{}'])[0];
+    const data = JSON.parse(jsonText);
+    return (data.table && data.table.rows) ? data.table.rows : [];
+  }
+
+  async function getNextOrderId(){
+    try{
+      const rows = await fetchTrackingRows();
+      let maxNum = 0;
+      rows.forEach(r=>{
+        const raw = (r.c && r.c[0] && (r.c[0].f ?? r.c[0].v)) ? String(r.c[0].f ?? r.c[0].v) : '';
+        const m = raw.match(/ABD[-_\s]?(\d+)/i);
+        if(m){
+          const n = parseInt(m[1], 10);
+          if(!isNaN(n)) maxNum = Math.max(maxNum, n);
+        }
+      });
+      const next = maxNum + 1;
+      return 'ABD-' + String(next).padStart(3,'0');
+    }catch(e){
+      // احتياطي إذا تعذّرت القراءة
+      return 'ABD-' + Math.random().toString(36).slice(2,5).toUpperCase();
+    }
+  }
 </script>
 
 </body>
