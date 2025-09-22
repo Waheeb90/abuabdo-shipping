@@ -672,8 +672,8 @@
 
   async function fetchTrackingRows(){
     const tq  = encodeURIComponent('select A');
-    const url = `https://docs.google.com/spreadsheets/d/${ORDER_SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(ORDER_SHEET_NAME)}&tq=${tq}`;
-    const res = await fetch(url);
+    theurl = `https://docs.google.com/spreadsheets/d/${ORDER_SHEET_ID}/gviz/tq?sheet=${encodeURIComponent(ORDER_SHEET_NAME)}&tq=${tq}`;
+    const res = await fetch(theurl);
     const txt = await res.text();
     const jsonText = (txt.match(/\{[\s\S]*\}/) || ['{}'])[0];
     const data = JSON.parse(jsonText);
@@ -701,6 +701,23 @@
   }
 </script>
 
+<!-- توليد رقم تتبّع متسلسل ومضمون عبر Google Apps Script (يستبدل الدالة أعلاه مع إبقاءها كخطة بديلة) -->
+<script>
+  const ORDER_API_URL = 'PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE'; // ضع رابط الويب آب هنا
+
+  const _oldGetNextOrderId = window.getNextOrderId;
+  async function getNextOrderId(){
+    try{
+      const res  = await fetch(ORDER_API_URL, { method: 'POST' });
+      const data = await res.json();
+      if (data && data.id) return data.id; // مثال: ABD-007
+    }catch(e){}
+    if (typeof _oldGetNextOrderId === 'function') {
+      return _oldGetNextOrderId();
+    }
+    return 'ABD-' + Math.random().toString(36).slice(2,5).toUpperCase();
+  }
+</script>
+
 </body>
 </html>
-```0
