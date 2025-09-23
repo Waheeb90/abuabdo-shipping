@@ -19,8 +19,7 @@
       margin:0;
       background:var(--bg);
       color:var(--text);
-      font-size:20px;       /* ✅ تكبير الخط */
-      line-height:1.6;       /* ✅ تحسين المسافات */
+      font-size:20px; /* تكبير عام للنص */
     }
     .container{max-width:980px;margin:auto;padding:0 16px}
     header{position:sticky;top:0;z-index:20;background:var(--brand);color:#fff;
@@ -41,22 +40,16 @@
     .nav h1{
       flex:1;
       text-align:center;
-      font-size:38px;   /* ✅ تكبير */
+      font-size:40px; /* كان 34px */
       font-weight:900;
       margin:0;
-      color:#fff;
+      color:#fff; /* أبيض */
       text-shadow:1px 1px 4px rgba(0,0,0,0.5);
     }
 
     /* الروابط */
     .links{display:flex;align-items:center;gap:12px;list-style:none;margin:0;padding:0}
-    .links a{
-      color:#fff;
-      text-decoration:none;
-      padding:10px 14px;
-      border-radius:8px;
-      font-size:18px;  /* ✅ تكبير */
-    }
+    .links a{color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px; font-size:20px} /* تكبير الروابط */
     .links a:hover{background:#084a96}
 
     /* زر واتساب */
@@ -64,8 +57,8 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      height:46px;  /* ✅ تكبير */
-      width:46px;   /* ✅ تكبير */
+      height:40px;
+      width:40px;
       background:#25D366;
       border-radius:999px;
       box-shadow:0 2px 6px rgba(0,0,0,.2);
@@ -75,68 +68,44 @@
       transform:scale(1.08);
       box-shadow:0 4px 10px rgba(0,0,0,.25);
     }
-    .links .wa-btn img{height:26px;width:26px;display:block}  /* ✅ تكبير */
+    .links .wa-btn img{height:22px;width:22px;display:block}
 
     /* صندوق التتبّع داخل الهيدر */
     .trackbox{padding:10px 0 14px}
-    .trackbox label{display:block;font-weight:800;margin-bottom:6px;color:#fff;font-size:22px}  /* ✅ تكبير */
+    .trackbox label{display:block;font-weight:800;margin-bottom:6px;color:#fff;font-size:22px} /* كان 18px */
     .trackrow{display:flex;gap:8px;align-items:center}
     .trackrow input{
       flex:1;
-      padding:12px 14px;
+      padding:10px 12px;
       border:1px solid #d8dee9;
       border-radius:10px;
-      font-size:18px; /* ✅ تكبير */
+      font-size:20px; /* كان 16px */
     }
     .trackrow button{
       background:#0b5ab8;
       color:#fff;
       border:none;
       cursor:pointer;
-      padding:12px 20px;
+      padding:10px 16px;
       border-radius:10px;
-      font-size:18px; /* ✅ تكبير */
+      font-size:20px; /* كان 16px */
       white-space:nowrap;
     }
-    #trackResult{color:#e5e7eb;margin:6px 2px 0;font-size:18px} /* ✅ تكبير */
+    #trackResult{color:#e5e7eb;margin:6px 2px 0; font-size:20px} /* تكبير نتيجة التتبع */
 
     main{padding:20px 0}
-    .card{
-      background:var(--card);
-      border-radius:14px;
-      box-shadow:0 6px 18px rgba(0,0,0,.06);
-      padding:20px;
-      margin:14px 0;
-      font-size:18px; /* ✅ تكبير */
-    }
-    .form-group{margin:12px 0}
-    label{display:block;font-weight:700;margin-bottom:6px;font-size:18px} /* ✅ تكبير */
-    input,select,textarea{
-      width:100%;
-      padding:14px 16px;
-      border:1px solid #d8dee9;
-      border-radius:10px;
-      font-size:18px; /* ✅ تكبير */
-    }
-    button{
-      background:var(--brand);
-      color:#fff;
-      border:none;
-      cursor:pointer;
-      padding:14px 22px;
-      border-radius:10px;
-      font-size:18px; /* ✅ تكبير */
-    }
+    .card{background:var(--card);border-radius:14px;box-shadow:0 6px 18px rgba(0,0,0,.06);
+      padding:18px;margin:14px 0}
+    .form-group{margin:10px 0}
+    label{display:block;font-weight:700;margin-bottom:6px; font-size:20px} /* تكبير عناوين الحقول */
+    input,select,textarea{width:100%;padding:12px 14px;border:1px solid #d8dee9;
+      border-radius:10px;font-size:20px} /* كان 16px */
+    button{background:var(--brand);color:#fff;border:none;cursor:pointer;padding:12px 20px;
+      border-radius:10px;font-size:20px} /* كان 16px */
     button.secondary{background:#e5e7eb;color:#111}
-    .muted{color:var(--muted);font-size:16px} /* ✅ تكبير */
+    .muted{color:var(--muted);font-size:18px} /* كان 14px */
     option[disabled]{color:gray}
-    footer{
-      padding:18px;
-      background:#374151;
-      color:#fff;
-      text-align:center;
-      font-size:18px; /* ✅ تكبير */
-    }
+    footer{padding:16px;background:#374151;color:#fff;text-align:center; font-size:20px} /* تكبير الفوتر */
 
     /* إبراز الحقول الناقصة بالأحمر */
     input.error, select.error, textarea.error{
@@ -160,13 +129,13 @@
         <!-- رابط تتبع الشحنة يشير لنموذج الهيدر -->
         <li><a href="#trackForm">تتبع الشحنة</a></li>
         <li style="text-align:center">
-          <a class="wa-btn
-"             href="https://wa.me/966559526399"
-             target="_blank" rel="noopener"
-             aria-label="تواصل عبر واتساب">
+          <a class="wa-btn "
+            href="https://wa.me/966559526399"
+            target="_blank" rel="noopener"
+            aria-label="تواصل عبر واتساب">
             <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="">
           </a>
-          <div style="color:#fff;font-size:13px;margin-top:4px;">للتواصل واتساب</div>
+          <div style="color:#fff;font-size:18px;margin-top:4px;">للتواصل واتساب</div> <!-- كان 13px -->
         </li>
       </ul>
     </div>
@@ -416,12 +385,10 @@
     </div>
     <p class="muted">⚠️ لا توجد أسعار في الموقع — سيتم تسعير الطلب يدويًا عبر واتساب (الدفع عند الاستلام).</p>
   </section>
+ </main>
+ <footer> أبو عبدو للشحن — من بيتك لبيت أهلك ... شحن مضمون مع أبو عبدو</footer>
 
-</main>
-
-<footer> أبو عبدو للشحن — من بيتك لبيت أهلك ... شحن مضمون مع أبو عبدو</footer>
-
-<script>
+ <script>
   /* الأجهزة الكهربائية لتفعيل خانة المقاس/البوصة */
   const ELECTRONICS = new Set([
     "ثلاجة صغيرة","ثلاجة متوسطة","ثلاجة كبيرة",
@@ -606,44 +573,44 @@
     /* 👇 رقم تتبع متسلسل من Google Sheets */
     const orderId = await getNextOrderId();
 
-    // ✅ (التحديث) تكوين رسالة واتساب وترميزها وفتحها  
-    const textLines = [  
-      `طلب شحن جديد (${orderId})`,  
-      '',  
-      '🚚 *بيانات الشحن*',  
-      `مدينة الشحن: ${saCity}`,  
-      `ولاية الاستلام: ${sdState}`,  
-      `المنطقة: ${area}`,  
-      `نوع الشحن: ${shipSpeed}`,  
-      '',  
-      '👤 *بيانات المرسل*',  
-      `الاسم: ${senderName}`,  
-      `الجوال: ${phone}`,  
-      `الحي: ${senderNeighborhood}`,  
-      `الشارع: ${senderStreet}`,  
-      `معلم بارز: ${senderLandmark}`,  
-      '',  
-      '👤 *بيانات المستلم*',  
-      `الاسم: ${receiverName}`,  
-      `الجوال: ${receiverPhone}`,  
-      '',  
-      '📦 *الشحنات*:',  
-      ...cart.map((c,i)=>`${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}`),  
-      '',  
-      '💰 الدفع عند الاستلام'  
+    // ✅ تكوين رسالة واتساب وترميزها وفتحها
+    const textLines = [
+      `طلب شحن جديد (${orderId})`,
+      '',
+      '🚚 *بيانات الشحن*',
+      `مدينة الشحن: ${saCity}`,
+      `ولاية الاستلام: ${sdState}`,
+      `المنطقة: ${area}`,
+      `نوع الشحن: ${shipSpeed}`,
+      '',
+      '👤 *بيانات المرسل*',
+      `الاسم: ${senderName}`,
+      `الجوال: ${phone}`,
+      `الحي: ${senderNeighborhood}`,
+      `الشارع: ${senderStreet}`,
+      `معلم بارز: ${senderLandmark}`,
+      '',
+      '👤 *بيانات المستلم*',
+      `الاسم: ${receiverName}`,
+      `الجوال: ${receiverPhone}`,
+      '',
+      '📦 *الشحنات*:',
+      ...cart.map((c,i)=>`${i+1}) ${c.item} — ${c.size} — ${c.weight}كجم${c.dim? ' — '+c.dim:''}`),
+      '',
+      '💰 الدفع عند الاستلام'
     ];
     const msg = textLines.join('\n');
 
-    const whatsappNumber = "966542354559"; // رقمك بصيغة دولية بدون +
+    const whatsappNumber = "966559526399"; // رقمك بصيغة دولية بدون +
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`;
 
     const win = window.open(url, '_blank');
     if (!win) { window.location.href = url; }
   });
-</script>
+ </script>
 
-<!-- سكربت تتبع الشحنة (قراءة Google Sheets) -->
-<script>
+ <!-- سكربت تتبع الشحنة (قراءة Google Sheets) -->
+ <script>
   (function(){
     const SHEET_ID = '1pNsciARaC0dWVA_bYsxoiMkFfts3u5gpNcRVae-lWqQ';
     const SHEET_NAME = 'Sheet1';
@@ -691,10 +658,10 @@
 
     if(trackBtn){ trackBtn.addEventListener('click', checkTracking); }
   })();
-</script>
+ </script>
 
-<!-- مبدّل عرض الأقسام: يجعل التتبّع كأنه صفحة منفصلة -->
-<script>
+ <!-- مبدّل عرض الأقسام: يجعل التتبّع كأنه صفحة منفصلة -->
+ <script>
   (function () {
     const s1 = document.getElementById('step1');
     const s2 = document.getElementById('step2');
@@ -719,10 +686,10 @@
     window.addEventListener('hashchange', route);
     route();
   })();
-</script>
+ </script>
 
-<!-- رقم تتبع متسلسل: قراءة آخر رقم من Google Sheets ثم +1 -->
-<script>
+ <!-- رقم تتبع متسلسل: قراءة آخر رقم من Google Sheets ثم +1 -->
+ <script>
   const ORDER_SHEET_ID   = '1pNsciARaC0dWVA_bYsxoiMkFfts3u5gpNcRVae-lWqQ';
   const ORDER_SHEET_NAME = 'Sheet1';
 
@@ -755,10 +722,10 @@
       return 'ABD-' + Math.random().toString(36).slice(2,5).toUpperCase();
     }
   }
-</script>
+ </script>
 
-<!-- توليد رقم تتبّع متسلسل ومضمون عبر Google Apps Script (يستبدل الدالة أعلاه مع إبقاءها كخطة بديلة) -->
-<script>
+ <!-- توليد رقم تتبّع متسلسل ومضمون عبر Google Apps Script (يستبدل الدالة أعلاه مع إبقاءها كخطة بديلة) -->
+ <script>
   const ORDER_API_URL = 'https://script.google.com/macros/s/AKfycbxi16Xv8zMo4obGz0veHmtydLfiSFSDM7e4cq0kmLcdUtpQpsywKIEg_fB4DLRcj4dP/exec'; // ضع رابط الويب آب هنا
 
   const _oldGetNextOrderId = window.getNextOrderId;
@@ -773,8 +740,6 @@
     }
     return 'ABD-' + Math.random().toString(36).slice(2,5).toUpperCase();
   }
-</script>
-
+ </script>
 </body>
 </html>
-```0
